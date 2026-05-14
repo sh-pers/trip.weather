@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Urlaubswetter</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+      color: #17202a;
+    }
+
+    header {
+      padding: 24px 18px;
+      background: #102a43;
+      color: white;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 28px;
+    }
+
+    .hint {
+      opacity: 0.85;
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .place {
+      font-size: 22px;
+      font-weight: 750;
+    }
+
+    .date {
+      color: #52616b;
+      font-size: 14px;
+    }
+
+    .icon {
+      font-size: 38px;
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .value {
+      background: #f4f6f8;
+      border-radius: 12px;
+      padding: 10px;
+    }
+
+    .label {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .number {
+      font-size: 17px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .recommendation {
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #eef6ff;
+      font-size: 14px;
+    }
+
+    .warning {
+      background: #fff7ed;
+    }
+
+    .error {
+      background: #fee2e2;
+      color: #7f1d1d;
+    }
+
+    @media (max-width: 650px) {
+      .values {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Urlaubswetter</h1>
+    <div class="hint">Aktuelle Prognose für deine Route</div>
+  </header>
+
+  <main>
+    <div id="weather" class="grid"></div>
+  </main>
+
+  <script>
+    const trip = [
+      { place: "Kiel", lat: 54.3233, lon: 10.1228, date: "2026-05-16" },
+      { place: "Bergen", lat: 60.39299, lon: 5.32415, date: "2026-05-18" },
+      { place: "Flåm", lat: 60.8616, lon: 7.1140, date: "2026-05-19" },
+      { place: "Ålesund", lat: 62.4722, lon: 6.1495, date: "2026-05-20" },
+      { place: "Haugesund", lat: 59.4138, lon: 5.2680, date: "2026-05-21" }
+    ];
+
+    const weatherBox = document.getElementById("weather");
+
+    function formatDate(dateString) {
+      return new Date(dateString + "T12:00:00").toLocaleDateString("de-DE", {
+        weekday: "short",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      });
+    }
+
+    function weatherInfo(code) {
+      if ([0].includes(code)) return { icon: "☀️", text: "Klar" };
+      if ([1, 2].includes(code)) return { icon: "🌤️", text: "Teils bewölkt" };
+      if ([3].includes(code)) return { icon: "☁️", text: "Bewölkt" };
+      if ([45, 48].includes(code)) return { icon: "🌫️", text: "Nebel" };
+      if ([51, 53, 55, 56, 57].includes(code)) return { icon: "🌦️", text: "Nieselregen" };
+      if ([61, 63, 65, 66, 67].includes(code)) return { icon: "🌧️", text: "Regen" };
+      if ([71, 73, 75, 77].includes(code)) return { icon: "🌨️", text: "Schnee" };
+      if ([80, 81, 82].includes(code)) return { icon: "🌦️", text: "Regenschauer" };
+      if ([95, 96, 99].includes(code)) return { icon: "⛈️", text: "Gewitter" };
+      return { icon: "❔", text: "Unklar" };
+    }
+
+    function recommendation(day) {
+      const tips = [];
+
+      if (day.precipitation_probability_max >= 50 || day.precipitation_sum >= 2) {
+        tips.push("Regenjacke und Buggy-Regenschutz einpacken");
+      }
+
+      if (day.wind_speed_10m_max >= 30) {
+        tips.push("windfeste Kleidung/Mütze sinnvoll");
+      }
+
+      if (day.temperature_2m_max <= 12) {
+        tips.push("wärmere Schicht für draußen einplanen");
+      }
+
+      if (day.temperature_2m_max >= 20 && day.precipitation_probability_max < 40) {
+        tips.push("Sonnenschutz nicht vergessen");
+      }
+
+      return tips.length ? tips.join(" · ") : "Keine besonderen Wetter-Extras nötig.";
+    }
+
+    async function fetchWeather(stop) {
+      const url =
+        `https://api.open-meteo.com/v1/forecast?latitude=${stop.lat}&longitude=${stop.lon}` +
+        `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,wind_speed_10m_max` +
+        `&timezone=auto&forecast_days=16`;
+
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Wetterdaten konnten nicht geladen werden.");
+
+      const data = await response.json();
+      const index = data.daily.time.indexOf(stop.date);
+
+      if (index === -1) {
+        return {
+          stop,
+          unavailable: true
+        };
+      }
+
+      return {
+        stop,
+        weather_code: data.daily.weather_code[index],
+        temperature_2m_max: data.daily.temperature_2m_max[index],
+        temperature_2m_min: data.daily.temperature_2m_min[index],
+        precipitation_probability_max: data.daily.precipitation_probability_max[index],
+        precipitation_sum: data.daily.precipitation_sum[index],
+        wind_speed_10m_max: data.daily.wind_speed_10m_max[index]
+      };
+    }
+
+    function renderCard(result) {
+      if (result.unavailable) {
+        return `
+          <section class="card warning">
+            <div class="place">${result.stop.place}</div>
+            <div class="date">${formatDate(result.stop.date)}</div>
+            <p>Für dieses Datum ist noch keine 16-Tage-Prognose verfügbar.</p>
+          </section>
+        `;
+      }
+
+      const info = weatherInfo(result.weather_code);
+
+      return `
+        <section class="card">
+          <div class="top">
+            <div>
+              <div class="place">${result.stop.place}</div>
+              <div class="date">${formatDate(result.stop.date)} · ${info.text}</div>
+            </div>
+            <div class="icon">${info.icon}</div>
+          </div>
+
+          <div class="values">
+            <div class="value">
+              <div class="label">Temperatur</div>
+              <div class="number">${Math.round(result.temperature_2m_min)}–${Math.round(result.temperature_2m_max)} °C</div>
+            </div>
+
+            <div class="value">
+              <div class="label">Regenrisiko</div>
+              <div class="number">${result.precipitation_probability_max ?? 0} %</div>
+            </div>
+
+            <div class="value">
+              <div class="label">Regenmenge</div>
+              <div class="number">${result.precipitation_sum ?? 0} mm</div>
+            </div>
+
+            <div class="value">
+              <div class="label">Wind</div>
+              <div class="number">${Math.round(result.wind_speed_10m_max)} km/h</div>
+            </div>
+          </div>
+
+          <div class="recommendation">
+            <strong>Pack-Hinweis:</strong> ${recommendation(result)}
+          </div>
+        </section>
+      `;
+    }
+
+    async function load() {
+      weatherBox.innerHTML = "<p>Lade Wetterdaten...</p>";
+
+      try {
+        const results = await Promise.all(trip.map(fetchWeather));
+        weatherBox.innerHTML = results.map(renderCard).join("");
+      } catch (error) {
+        weatherBox.innerHTML = `
+          <section class="card error">
+            Wetter konnte nicht geladen werden. Bitte später erneut versuchen.
+          </section>
+        `;
+      }
+    }
+
+    load();
+  </script>
+</body>
+</html>
