@@ -5,112 +5,137 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Urlaubswetter</title>
   <style>
+    :root {
+      --vanilla: #FEEFB6;
+      --sky: #C3DAE8;
+      --mocha: #432F2E;
+    }
+  
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       margin: 0;
-      background: #f4f6f8;
-      color: #17202a;
+      background: var(--sky);
+      color: var(--mocha);
     }
-
+  
     header {
-      padding: 24px 18px;
-      background: #102a43;
-      color: white;
+      padding: 28px 18px;
+      background: var(--vanilla);
+      color: var(--mocha);
     }
-
+  
     main {
-      max-width: 900px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 18px;
     }
-
+  
     h1 {
       margin: 0 0 6px;
-      font-size: 28px;
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
     }
-
+  
     .hint {
-      opacity: 0.85;
       font-size: 14px;
+      opacity: 0.8;
     }
-
+  
     .grid {
       display: grid;
-      gap: 14px;
+      gap: 16px;
     }
-
+  
     .card {
-      background: white;
-      border-radius: 18px;
+      background: #fff7cf;
+      border: 2px solid rgba(67,47,46,0.12);
+      border-radius: 22px;
       padding: 18px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      box-shadow: 0 8px 22px rgba(67,47,46,0.12);
     }
-
+  
     .top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
+      margin-bottom: 16px;
     }
-
+  
     .place {
-      font-size: 22px;
-      font-weight: 750;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
     }
-
+  
     .date {
-      color: #52616b;
       font-size: 14px;
+      opacity: 0.75;
     }
-
-    .icon {
-      font-size: 38px;
-    }
-
+  
     .values {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-top: 16px;
+      gap: 12px;
     }
-
+  
     .value {
-      background: #f4f6f8;
-      border-radius: 12px;
-      padding: 10px;
+      background: var(--mocha);
+      color: var(--sky);
+      border-radius: 18px;
+      padding: 16px 12px;
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
-
-    .label {
-      font-size: 12px;
-      color: #64748b;
+  
+    .part-label {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--vanilla);
+      margin-bottom: 8px;
     }
-
+  
+    .weather-icon {
+      font-size: 56px;
+      line-height: 1;
+      margin: 8px 0 12px;
+    }
+  
     .number {
-      font-size: 17px;
-      font-weight: 700;
-      margin-top: 4px;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--vanilla);
+      margin-bottom: 8px;
     }
-
-    .recommendation {
-      margin-top: 14px;
-      padding: 12px;
-      border-radius: 12px;
-      background: #eef6ff;
-      font-size: 14px;
+  
+    .detail {
+      font-size: 13px;
+      line-height: 1.45;
+      opacity: 0.95;
     }
-
+  
+    .error,
     .warning {
-      background: #fff7ed;
+      background: var(--vanilla);
+      color: var(--mocha);
     }
-
-    .error {
-      background: #fee2e2;
-      color: #7f1d1d;
-    }
-
+  
     @media (max-width: 650px) {
+      main {
+        padding: 12px;
+      }
+  
       .values {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+      }
+  
+      .value {
+        min-height: auto;
+        padding: 18px;
+      }
+  
+      .weather-icon {
+        font-size: 64px;
       }
     }
   </style>
@@ -126,6 +151,8 @@
     <div id="weather" class="grid"></div>
   </main>
 
+  
+  
   <script>
     const trip = [
       { place: "Kiel", lat: 54.3233, lon: 10.1228, date: "2026-05-16" },
@@ -138,10 +165,10 @@
     const weatherBox = document.getElementById("weather");
   
     const dayParts = [
-      { key: "morning", label: "Vormittag", from: 6, to: 12 },
-      { key: "afternoon", label: "Nachmittag", from: 12, to: 18 },
-      { key: "evening", label: "Abend", from: 18, to: 24 },
-      { key: "night", label: "Nacht", from: 0, to: 6 }
+      { label: "Vormittag", from: 6, to: 12 },
+      { label: "Nachmittag", from: 12, to: 18 },
+      { label: "Abend", from: 18, to: 24 },
+      { label: "Nacht", from: 0, to: 6 }
     ];
   
     function formatDate(dateString) {
@@ -168,18 +195,18 @@
   
     function avg(values) {
       const valid = values.filter(v => v !== null && v !== undefined);
-      if (!valid.length) return null;
       return valid.reduce((a, b) => a + b, 0) / valid.length;
+    }
+  
+    function sum(values) {
+      return values
+        .filter(v => v !== null && v !== undefined)
+        .reduce((a, b) => a + b, 0);
     }
   
     function max(values) {
       const valid = values.filter(v => v !== null && v !== undefined);
-      return valid.length ? Math.max(...valid) : null;
-    }
-  
-    function sum(values) {
-      const valid = values.filter(v => v !== null && v !== undefined);
-      return valid.reduce((a, b) => a + b, 0);
+      return valid.length ? Math.max(...valid) : 0;
     }
   
     function mostFrequent(values) {
@@ -191,29 +218,6 @@
       return Number(
         Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? 0
       );
-    }
-  
-    function recommendation(part) {
-      const tips = [];
-  
-      if (part.precipProbability >= 50 || part.precipitation >= 1.5) {
-        tips.push("Regenjacke");
-        tips.push("Buggy-Regenschutz");
-      }
-  
-      if (part.wind >= 30) {
-        tips.push("windfeste Kleidung");
-      }
-  
-      if (part.temperature <= 10) {
-        tips.push("warme Schicht");
-      }
-  
-      if (part.temperature >= 18 && part.precipProbability < 40) {
-        tips.push("Sonnenschutz");
-      }
-  
-      return tips.length ? tips.join(" · ") : "unproblematisch";
     }
   
     async function fetchWeather(stop) {
@@ -231,20 +235,13 @@
         const indexes = data.hourly.time
           .map((time, index) => ({ time, index }))
           .filter(item => {
-            const d = new Date(item.time);
-            const hour = d.getHours();
+            const hour = new Date(item.time).getHours();
             const date = item.time.slice(0, 10);
-  
             return date === stop.date && hour >= part.from && hour < part.to;
           })
           .map(item => item.index);
   
-        if (!indexes.length) {
-          return {
-            ...part,
-            unavailable: true
-          };
-        }
+        if (!indexes.length) return { ...part, unavailable: true };
   
         const temps = indexes.map(i => data.hourly.temperature_2m[i]);
         const rainProb = indexes.map(i => data.hourly.precipitation_probability[i]);
@@ -255,12 +252,11 @@
         return {
           ...part,
           unavailable: false,
-          temperature: Math.round(avg(temps)),
           tempMin: Math.round(Math.min(...temps)),
           tempMax: Math.round(Math.max(...temps)),
-          precipProbability: Math.round(max(rainProb) ?? 0),
+          precipProbability: Math.round(max(rainProb)),
           precipitation: Number(sum(rain).toFixed(1)),
-          wind: Math.round(max(wind) ?? 0),
+          wind: Math.round(max(wind)),
           weatherCode: mostFrequent(codes)
         };
       });
@@ -272,8 +268,9 @@
       if (part.unavailable) {
         return `
           <div class="value">
-            <div class="label">${part.label}</div>
-            <div class="number">Noch nicht verfügbar</div>
+            <div class="part-label">${part.label}</div>
+            <div class="weather-icon">—</div>
+            <div class="detail">Noch nicht verfügbar</div>
           </div>
         `;
       }
@@ -282,12 +279,12 @@
   
       return `
         <div class="value">
-          <div class="label">${part.label} ${info.icon}</div>
+          <div class="part-label">${part.label}</div>
+          <div class="weather-icon">${info.icon}</div>
           <div class="number">${part.tempMin}–${part.tempMax} °C</div>
-          <div class="label">${info.text}</div>
-          <div class="label">Regen: ${part.precipProbability} % / ${part.precipitation} mm</div>
-          <div class="label">Wind: ${part.wind} km/h</div>
-          <div class="label">Tipp: ${recommendation(part)}</div>
+          <div class="detail">${info.text}</div>
+          <div class="detail">Regen: ${part.precipProbability} % / ${part.precipitation} mm</div>
+          <div class="detail">Wind: ${part.wind} km/h</div>
         </div>
       `;
     }
@@ -296,10 +293,8 @@
       return `
         <section class="card">
           <div class="top">
-            <div>
-              <div class="place">${result.stop.place}</div>
-              <div class="date">${formatDate(result.stop.date)}</div>
-            </div>
+            <div class="place">${result.stop.place}</div>
+            <div class="date">${formatDate(result.stop.date)}</div>
           </div>
   
           <div class="values">
