@@ -1,0 +1,226 @@
+{
+  "DEWAR": {
+    "name": "Warnemünde",
+    "query": "Warnemünde",
+    "lat": 54.1767,
+    "lon": 12.08402,
+    "countryCode": "DE",
+    "timezone": "Europe/Berlin"
+  },
+  "SEKAA": {
+    "name": "Karlskrona",
+    "query": "Karlskrona",
+    "lat": 56.16156,
+    "lon": 15.58661,
+    "countryCode": "SE",
+    "timezone": "Europe/Stockholm"
+  },
+  "DKCPH": {
+    "name": "Kopenhagen",
+    "query": "Kopenhagen",
+    "lat": 55.67594,
+    "lon": 12.56553,
+    "countryCode": "DK",
+    "timezone": "Europe/Copenhagen"
+  },
+  "DKAAR": {
+    "name": "Arhus",
+    "query": "Arhus",
+    "lat": 56.15674,
+    "lon": 10.21076,
+    "countryCode": "DK",
+    "timezone": "Europe/Copenhagen"
+  },
+  "ESPMI": {
+    "name": "Palma",
+    "query": "Palma",
+    "lat": 39.56939,
+    "lon": 2.65024,
+    "countryCode": "ES",
+    "timezone": "Europe/Madrid"
+  },
+  "ITSPE": {
+    "name": "Florenz/La spezia",
+    "query": "La Spezia",
+    "lat": 44.103,
+    "lon": 9.82375,
+    "countryCode": "IT",
+    "timezone": "Europe/Rome"
+  },
+  "ITCVV": {
+    "name": "Rom/Civitavecchia",
+    "query": "Civitavecchia",
+    "lat": 42.09325,
+    "lon": 11.79674,
+    "countryCode": "IT",
+    "timezone": "Europe/Rome"
+  },
+  "FRAJA": {
+    "name": "Ajaccio/Korsika",
+    "query": "Ajaccio",
+    "lat": 41.91886,
+    "lon": 8.73812,
+    "countryCode": "FR",
+    "timezone": "Europe/Paris"
+  },
+  "ESBCN": {
+    "name": "Barcelona",
+    "query": "Barcelona",
+    "lat": 41.38879,
+    "lon": 2.15899,
+    "countryCode": "ES",
+    "timezone": "Europe/Madrid"
+  },
+  "DEHAM": {
+    "name": "Hamburg",
+    "query": "Hamburg",
+    "lat": 53.55073,
+    "lon": 9.99302,
+    "countryCode": "DE",
+    "timezone": "Europe/Berlin"
+  },
+  "FRLEH": {
+    "name": "Paris/Le havre",
+    "query": "Le Havre",
+    "lat": 49.49346,
+    "lon": 0.10785,
+    "countryCode": "FR",
+    "timezone": "Europe/Paris"
+  },
+  "GBSOU": {
+    "name": "Southampton",
+    "query": "Southampton",
+    "lat": 50.90395,
+    "lon": -1.40428,
+    "countryCode": "GB",
+    "timezone": "Europe/London"
+  },
+  "BEZEE": {
+    "name": "Zeebrügge",
+    "query": "Zeebrügge",
+    "lat": 51.32901,
+    "lon": 3.18188,
+    "countryCode": "BE",
+    "timezone": "Europe/Brussels"
+  },
+  "NLRTM": {
+    "name": "Rotterdam",
+    "query": "Rotterdam",
+    "lat": 51.9225,
+    "lon": 4.47917,
+    "countryCode": "NL",
+    "timezone": "Europe/Amsterdam"
+  },
+  "GRCFU": {
+    "name": "Korfu",
+    "query": "Korfu",
+    "lat": 39.62441,
+    "lon": 19.92016,
+    "countryCode": "GR",
+    "timezone": "Europe/Athens"
+  },
+  "ITBRI": {
+    "name": "Bari",
+    "query": "Bari",
+    "lat": 41.12066,
+    "lon": 16.86982,
+    "countryCode": "IT",
+    "timezone": "Europe/Rome"
+  },
+  "MEKOT": {
+    "name": "Kotor",
+    "query": "Kotor",
+    "lat": 42.42067,
+    "lon": 18.76825,
+    "countryCode": "ME",
+    "timezone": "Europe/Podgorica"
+  },
+  "HRDBV": {
+    "name": "Dubrovnik",
+    "query": "Dubrovnik",
+    "lat": 42.64125,
+    "lon": 18.10909,
+    "countryCode": "HR",
+    "timezone": "Europe/Zagreb"
+  },
+  "HRZAD": {
+    "name": "Zadar",
+    "query": "Zadar",
+    "lat": 44.11578,
+    "lon": 15.22514,
+    "countryCode": "HR",
+    "timezone": "Europe/Zagreb"
+  },
+  "ITTRS": {
+    "name": "Triest",
+    "query": "Triest",
+    "lat": 45.64953,
+    "lon": 13.77678,
+    "countryCode": "IT",
+    "timezone": "Europe/Rome"
+  },
+  "NOBGO": {
+    "name": "Bergen",
+    "query": "Bergen",
+    "lat": 60.39299,
+    "lon": 5.32415,
+    "countryCode": "NO",
+    "timezone": "Europe/Oslo"
+  },
+  "NOOLD": {
+    "name": "Olden",
+    "query": "Olden",
+    "lat": 32.41902,
+    "lon": -98.75089,
+    "countryCode": "US",
+    "timezone": "America/Chicago"
+  },
+  "NOSVG": {
+    "name": "Stavanger",
+    "query": "Stavanger",
+    "lat": 58.97005,
+    "lon": 5.73332,
+    "countryCode": "NO",
+    "timezone": "Europe/Oslo"
+  },
+  "NOKRS": {
+    "name": "Kristiansand",
+    "query": "Kristiansand",
+    "lat": 58.14671,
+    "lon": 7.9956,
+    "countryCode": "NO",
+    "timezone": "Europe/Oslo"
+  },
+  "DEKEL": {
+    "name": "Kiel",
+    "query": "Kiel",
+    "lat": 54.32133,
+    "lon": 10.13489,
+    "countryCode": "DE",
+    "timezone": "Europe/Berlin"
+  },
+  "NOFLA": {
+    "name": "Flam",
+    "query": "Flam",
+    "lat": 60.83706,
+    "lon": 7.12194,
+    "countryCode": "NO",
+    "timezone": "Europe/Oslo"
+  },
+  "XXNF2": {
+    "name": "Welterbe-aurlandsfjord-passa",
+    "query": "Flåm",
+    "lat": 60.83706,
+    "lon": 7.12194,
+    "countryCode": "NO",
+    "timezone": "Europe/Oslo"
+  },
+  "NOAES": {
+    "name": "Alesund",
+    "query": "Alesund",
+    "lat": 62.47225,
+    "lon": 6.15492,
+    "countryCode": "NO",
+    "timezone": "Europe/Oslo"
+  }
+}

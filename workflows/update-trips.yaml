@@ -1,0 +1,30 @@
+name: Update trips.json
+
+on:
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-trips:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: node import-aida.js
+
+      - name: Commit updated trips
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add trips.json port-cache.json
+          git commit -m "Update trips data" || echo "No changes"
+          git push

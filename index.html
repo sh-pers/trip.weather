@@ -4,160 +4,201 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Urlaubswetter</title>
+
   <style>
     :root {
-      --vanilla: #FEEFB6;
-      --sky: #C3DAE8;
-      --mocha: #432F2E;
+      --navy: #0B1F33;
+      --deep-sea: #123A4A;
+      --ocean: #2F7188;
+      --foam: #F4FAFB;
+      --sand: #EAD8B8;
+      --coral: #F28C6B;
+      --muted: #78909C;
+      --white: #FFFFFF;
     }
-  
+
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       margin: 0;
-      background: var(--sky);
-      color: var(--mocha);
+      background:
+        radial-gradient(circle at top right, rgba(47,113,136,0.25), transparent 32%),
+        linear-gradient(180deg, var(--foam), #E7F1F3);
+      color: var(--navy);
     }
-  
+
     header {
-      padding: 28px 18px;
-      background: var(--vanilla);
-      color: var(--mocha);
+      padding: 34px 18px 28px;
+      background: linear-gradient(135deg, var(--navy), var(--deep-sea));
+      color: var(--white);
     }
-  
+
     main {
-      max-width: 980px;
+      max-width: 1040px;
       margin: 0 auto;
       padding: 18px;
     }
-  
+
     h1 {
-      margin: 0 0 6px;
-      font-size: 30px;
+      margin: 0 0 8px;
+      font-size: 34px;
       font-weight: 900;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
     }
-  
+
     .hint {
+      color: rgba(255,255,255,0.72);
       font-size: 14px;
-      opacity: 0.8;
     }
-  
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    select {
+      appearance: none;
+      padding: 14px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,31,51,0.12);
+      background: var(--white);
+      color: var(--navy);
+      font-weight: 750;
+      box-shadow: 0 8px 22px rgba(11,31,51,0.08);
+    }
+
     .grid {
       display: grid;
-      gap: 16px;
+      gap: 18px;
     }
-  
+
     .card {
-      background: #fff7cf;
-      border: 2px solid rgba(67,47,46,0.12);
-      border-radius: 22px;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(11,31,51,0.10);
+      border-radius: 28px;
       padding: 18px;
-      box-shadow: 0 8px 22px rgba(67,47,46,0.12);
+      box-shadow: 0 16px 36px rgba(11,31,51,0.10);
     }
-  
+
     .top {
       margin-bottom: 16px;
     }
-  
+
     .place {
-      font-size: 24px;
+      font-size: 25px;
       font-weight: 900;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.035em;
     }
-  
+
     .date {
+      margin-top: 3px;
       font-size: 14px;
-      opacity: 0.75;
+      color: var(--muted);
     }
-  
+
     .values {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
     }
-  
+
     .value {
-      background: var(--mocha);
-      color: var(--sky);
-      border-radius: 18px;
-      padding: 16px 12px;
-      min-height: 190px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--deep-sea), var(--navy));
+      color: var(--foam);
+      border-radius: 22px;
+      padding: 18px 14px;
+      min-height: 196px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
     }
-  
+
+    .value::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -40% -20%;
+      height: 90px;
+      background: rgba(244,250,251,0.08);
+      border-radius: 50%;
+    }
+
     .part-label {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--vanilla);
+      position: relative;
+      z-index: 1;
+      font-size: 14px;
+      font-weight: 850;
+      color: var(--sand);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
       margin-bottom: 8px;
     }
-  
+
     .weather-icon {
-      font-size: 56px;
+      position: relative;
+      z-index: 1;
+      font-size: 62px;
       line-height: 1;
-      margin: 8px 0 12px;
+      margin: 6px 0 12px;
     }
-  
+
     .number {
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--vanilla);
+      position: relative;
+      z-index: 1;
+      font-size: 24px;
+      font-weight: 950;
+      color: var(--white);
       margin-bottom: 8px;
     }
-  
+
     .detail {
+      position: relative;
+      z-index: 1;
       font-size: 13px;
       line-height: 1.45;
-      opacity: 0.95;
+      color: rgba(244,250,251,0.82);
     }
-  
+
     .error,
     .warning {
-      background: var(--vanilla);
-      color: var(--mocha);
+      background: #FFF4EC;
+      color: var(--navy);
+      border-color: rgba(242,140,107,0.35);
     }
 
-    .controls {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        margin-bottom: 18px;
-        }
-
-        select {
-        padding: 12px;
-        border-radius: 14px;
-        border: 2px solid rgba(67,47,46,0.2);
-        background: #FEEFB6;
-        color: #432F2E;
-        font-weight: 700;
-        }
-
-        @media (max-width: 650px) {
-        .controls {
-            grid-template-columns: 1fr;
-        }
-    }
-  
     @media (max-width: 650px) {
+      header {
+        padding: 28px 16px 24px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
       main {
         padding: 12px;
       }
-  
+
+      .controls {
+        grid-template-columns: 1fr;
+      }
+
       .values {
         grid-template-columns: 1fr;
       }
-  
+
       .value {
         min-height: auto;
-        padding: 18px;
+        padding: 20px 16px;
       }
-  
+
       .weather-icon {
-        font-size: 64px;
+        font-size: 68px;
       }
     }
   </style>
@@ -166,135 +207,42 @@
 <body>
   <header>
     <h1>Urlaubswetter</h1>
-    <div class="hint">Aktuelle Prognose für deine Route</div>
+    <div class="hint">Aktuelle Prognose für deine Kreuzfahrt</div>
   </header>
 
   <main>
+
     <div class="controls">
-        <select id="yearSelect"></select>
-        <select id="shipSelect"></select>
-        <select id="tripSelect"></select>
-      </div>
+      <select id="shipSelect"></select>
+      <select id="tripSelect"></select>
+    </div>
+
     <div id="weather" class="grid"></div>
+
   </main>
 
-  
-  
   <script>
     let allTrips = [];
     let selectedStops = [];
 
-    const yearSelect = document.getElementById("yearSelect");
+    const weatherBox = document.getElementById("weather");
     const shipSelect = document.getElementById("shipSelect");
     const tripSelect = document.getElementById("tripSelect");
 
-    async function loadTrips() {
-    const response = await fetch("trips.json");
-    allTrips = await response.json();
+    const weatherCache = new Map();
+    let requestVersion = 0;
 
-    fillYears();
-    updateShips();
-    updateTrips();
-    await updateWeatherFromSelection();
-    }
-
-    function fillYears() {
-    const years = [...new Set(allTrips.map(trip => trip.year))].sort();
-
-    yearSelect.innerHTML = years
-        .map(year => `<option value="${year}">${year}</option>`)
-        .join("");
-    }
-
-    function updateShips() {
-    const selectedYear = yearSelect.value;
-
-    const ships = [...new Set(
-        allTrips
-        .filter(trip => trip.year === selectedYear)
-        .map(trip => trip.ship)
-    )].sort();
-
-    shipSelect.innerHTML = ships
-        .map(ship => `<option value="${ship}">${ship}</option>`)
-        .join("");
-    }
-
-    function updateTrips() {
-    const selectedYear = yearSelect.value;
-    const selectedShip = shipSelect.value;
-
-    const trips = allTrips.filter(trip =>
-        trip.year === selectedYear && trip.ship === selectedShip
-    );
-
-    tripSelect.innerHTML = trips
-        .map((trip, index) => `
-        <option value="${index}">
-            ${formatDate(trip.date)} · ${trip.title}
-        </option>
-        `)
-        .join("");
-    }
-
-    function getSelectedTrip() {
-    const selectedYear = yearSelect.value;
-    const selectedShip = shipSelect.value;
-
-    const trips = allTrips.filter(trip =>
-        trip.year === selectedYear && trip.ship === selectedShip
-    );
-
-    return trips[Number(tripSelect.value)];
-    }
-
-    async function updateWeatherFromSelection() {
-    const selectedTrip = getSelectedTrip();
-
-    if (!selectedTrip) {
-        weatherBox.innerHTML = "<p>Keine Reise gefunden.</p>";
-        return;
-    }
-
-    selectedStops = selectedTrip.stops;
-    weatherBox.innerHTML = "<p>Lade Wetterdaten...</p>";
-
-    try {
-        const results = await Promise.all(selectedStops.map(fetchWeather));
-        weatherBox.innerHTML = results.map(renderCard).join("");
-    } catch {
-        weatherBox.innerHTML = `
-        <section class="card error">
-            Wetter konnte nicht geladen werden.
-        </section>
-        `;
-    }
-    }
-
-    yearSelect.addEventListener("change", async () => {
-    updateShips();
-    updateTrips();
-    await updateWeatherFromSelection();
-    });
-
-    shipSelect.addEventListener("change", async () => {
-    updateTrips();
-    await updateWeatherFromSelection();
-    });
-
-    tripSelect.addEventListener("change", updateWeatherFromSelection);
-
-    loadTrips();
-  
-    const weatherBox = document.getElementById("weather");
-  
     const dayParts = [
       { label: "Vormittag", from: 6, to: 12 },
       { label: "Nachmittag", from: 12, to: 18 },
       { label: "Abend", from: 18, to: 24 },
       { label: "Nacht", from: 0, to: 6 }
     ];
-  
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     function formatDate(dateString) {
       return new Date(dateString + "T12:00:00").toLocaleDateString("de-DE", {
         weekday: "short",
@@ -303,7 +251,7 @@
         year: "numeric"
       });
     }
-  
+
     function weatherInfo(code) {
       if ([0].includes(code)) return { icon: "☀️", text: "Klar" };
       if ([1, 2].includes(code)) return { icon: "🌤️", text: "Teils bewölkt" };
@@ -314,65 +262,137 @@
       if ([71, 73, 75, 77].includes(code)) return { icon: "🌨️", text: "Schnee" };
       if ([80, 81, 82].includes(code)) return { icon: "🌦️", text: "Schauer" };
       if ([95, 96, 99].includes(code)) return { icon: "⛈️", text: "Gewitter" };
+
       return { icon: "❔", text: "Unklar" };
     }
-  
-    function avg(values) {
-      const valid = values.filter(v => v !== null && v !== undefined);
-      return valid.reduce((a, b) => a + b, 0) / valid.length;
-    }
-  
+
     function sum(values) {
       return values
         .filter(v => v !== null && v !== undefined)
         .reduce((a, b) => a + b, 0);
     }
-  
+
     function max(values) {
       const valid = values.filter(v => v !== null && v !== undefined);
       return valid.length ? Math.max(...valid) : 0;
     }
-  
+
     function mostFrequent(values) {
       const counts = {};
+
       values.forEach(v => {
-        if (v !== null && v !== undefined) counts[v] = (counts[v] || 0) + 1;
+        if (v !== null && v !== undefined) {
+          counts[v] = (counts[v] || 0) + 1;
+        }
       });
-  
+
       return Number(
         Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? 0
       );
     }
-  
+
+    async function loadTrips() {
+      weatherBox.innerHTML = "<p>Lade Reisen...</p>";
+
+      const response = await fetch("trips.json");
+      allTrips = await response.json();
+
+      updateShips();
+      updateTrips();
+
+      await updateWeatherFromSelection();
+    }
+
+    function updateShips() {
+      const ships = [...new Set(
+        allTrips.map(trip => trip.ship)
+      )].sort();
+
+      shipSelect.innerHTML = ships
+        .map(ship => `<option value="${ship}">${ship}</option>`)
+        .join("");
+    }
+
+    function updateTrips() {
+      const selectedShip = shipSelect.value;
+
+      const trips = allTrips.filter(
+        trip => trip.ship === selectedShip
+      );
+
+      tripSelect.innerHTML = trips
+        .map((trip, index) => `
+          <option value="${index}">
+            ${formatDate(trip.date)} · ${trip.title}
+          </option>
+        `)
+        .join("");
+    }
+
+    function getSelectedTrip() {
+      const selectedShip = shipSelect.value;
+
+      const trips = allTrips.filter(
+        trip => trip.ship === selectedShip
+      );
+
+      return trips[Number(tripSelect.value)];
+    }
+
     async function fetchWeather(stop) {
+      if (!stop.lat || !stop.lon) {
+        return {
+          stop,
+          unavailable: true,
+          reason: "Keine Koordinaten vorhanden"
+        };
+      }
+
       const url =
         `https://api.open-meteo.com/v1/forecast?latitude=${stop.lat}&longitude=${stop.lon}` +
         `&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,wind_speed_10m` +
         `&timezone=auto&forecast_days=16`;
-  
+
       const response = await fetch(url);
-      if (!response.ok) throw new Error("Wetterdaten konnten nicht geladen werden.");
-  
+
+      if (!response.ok) {
+        return {
+          stop,
+          unavailable: true,
+          reason: "Wetterdaten konnten nicht geladen werden"
+        };
+      }
+
       const data = await response.json();
-  
+
       const parts = dayParts.map(part => {
         const indexes = data.hourly.time
           .map((time, index) => ({ time, index }))
           .filter(item => {
             const hour = new Date(item.time).getHours();
             const date = item.time.slice(0, 10);
-            return date === stop.date && hour >= part.from && hour < part.to;
+
+            return (
+              date === stop.date &&
+              hour >= part.from &&
+              hour < part.to
+            );
           })
           .map(item => item.index);
-  
-        if (!indexes.length) return { ...part, unavailable: true };
-  
+
+        if (!indexes.length) {
+          return {
+            ...part,
+            unavailable: true
+          };
+        }
+
         const temps = indexes.map(i => data.hourly.temperature_2m[i]);
         const rainProb = indexes.map(i => data.hourly.precipitation_probability[i]);
         const rain = indexes.map(i => data.hourly.precipitation[i]);
         const wind = indexes.map(i => data.hourly.wind_speed_10m[i]);
         const codes = indexes.map(i => data.hourly.weather_code[i]);
-  
+
         return {
           ...part,
           unavailable: false,
@@ -384,10 +404,63 @@
           weatherCode: mostFrequent(codes)
         };
       });
-  
+
       return { stop, parts };
     }
-  
+
+    async function fetchWeatherCached(stop) {
+      const key = `${stop.portCode || stop.place}-${stop.date}`;
+
+      if (weatherCache.has(key)) {
+        return weatherCache.get(key);
+      }
+
+      const result = await fetchWeather(stop);
+
+      weatherCache.set(key, result);
+
+      await sleep(500);
+
+      return result;
+    }
+
+    async function updateWeatherFromSelection() {
+      const currentVersion = ++requestVersion;
+
+      const selectedTrip = getSelectedTrip();
+
+      if (!selectedTrip) {
+        weatherBox.innerHTML = "<p>Keine Reise gefunden.</p>";
+        return;
+      }
+
+      selectedStops = selectedTrip.stops || [];
+
+      if (!selectedStops.length) {
+        weatherBox.innerHTML = `
+          <section class="card warning">
+            Keine Hafenstopps vorhanden.
+          </section>
+        `;
+        return;
+      }
+
+      weatherBox.innerHTML = "<p>Lade Wetterdaten...</p>";
+
+      const results = [];
+
+      for (const stop of selectedStops) {
+        if (currentVersion !== requestVersion) return;
+
+        const result = await fetchWeatherCached(stop);
+
+        results.push(result);
+
+        weatherBox.innerHTML =
+          results.map(renderCard).join("");
+      }
+    }
+
     function renderPart(part) {
       if (part.unavailable) {
         return `
@@ -398,52 +471,68 @@
           </div>
         `;
       }
-  
+
       const info = weatherInfo(part.weatherCode);
-  
+
       return `
         <div class="value">
           <div class="part-label">${part.label}</div>
           <div class="weather-icon">${info.icon}</div>
           <div class="number">${part.tempMin}–${part.tempMax} °C</div>
           <div class="detail">${info.text}</div>
-          <div class="detail">Regen: ${part.precipProbability} % / ${part.precipitation} mm</div>
-          <div class="detail">Wind: ${part.wind} km/h</div>
+          <div class="detail">
+            Regen: ${part.precipProbability}% / ${part.precipitation} mm
+          </div>
+          <div class="detail">
+            Wind: ${part.wind} km/h
+          </div>
         </div>
       `;
     }
-  
+
     function renderCard(result) {
+      if (result.unavailable) {
+        return `
+          <section class="card warning">
+            <div class="top">
+              <div>
+                <div class="place">${result.stop.place}</div>
+                <div class="date">${formatDate(result.stop.date)}</div>
+              </div>
+            </div>
+
+            <p>${result.reason}</p>
+          </section>
+        `;
+      }
+
       return `
         <section class="card">
           <div class="top">
-            <div class="place">${result.stop.place}</div>
-            <div class="date">${formatDate(result.stop.date)}</div>
+            <div>
+              <div class="place">${result.stop.place}</div>
+              <div class="date">${formatDate(result.stop.date)}</div>
+            </div>
           </div>
-  
+
           <div class="values">
             ${result.parts.map(renderPart).join("")}
           </div>
         </section>
       `;
     }
-  
-    async function load() {
-      weatherBox.innerHTML = "<p>Lade Wetterdaten...</p>";
-  
-      try {
-        const results = await Promise.all(trip.map(fetchWeather));
-        weatherBox.innerHTML = results.map(renderCard).join("");
-      } catch (error) {
-        weatherBox.innerHTML = `
-          <section class="card error">
-            Wetter konnte nicht geladen werden. Bitte später erneut versuchen.
-          </section>
-        `;
-      }
-    }
-  
-    load();
+
+    shipSelect.addEventListener("change", async () => {
+      updateTrips();
+      await updateWeatherFromSelection();
+    });
+
+    tripSelect.addEventListener(
+      "change",
+      updateWeatherFromSelection
+    );
+
+    loadTrips();
   </script>
 </body>
 </html>
