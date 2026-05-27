@@ -1,15 +1,189 @@
 [
   {
-    "year": "2026",
-    "ship": "AIDAnova",
-    "date": "2026-05-16",
-    "title": "Norwegen ab Kiel",
+    "year": "2027",
+    "ship": "AIDAblu",
+    "date": "2027-05-01",
+    "endDate": "2027-05-08",
+    "title": "Griechenland ab Korfu 2",
+    "fromCity": "Korfu",
+    "duration": 7,
     "stops": [
-      { "place": "Kiel", "date": "2026-05-16", "lat": 54.3233, "lon": 10.1228 },
-      { "place": "Bergen", "date": "2026-05-18", "lat": 60.39299, "lon": 5.32415 },
-      { "place": "Flåm", "date": "2026-05-19", "lat": 60.8616, "lon": 7.1140 },
-      { "place": "Ålesund", "date": "2026-05-20", "lat": 62.4722, "lon": 6.1495 },
-      { "place": "Haugesund", "date": "2026-05-21", "lat": 59.4138, "lon": 5.2680 }
+      {
+        "place": "Korfu",
+        "date": "2027-05-01",
+        "lat": 39.6243,
+        "lon": 19.9217
+      }
+    ]
+  },
+  {
+    "year": "2027",
+    "ship": "AIDAcosma",
+    "date": "2027-05-01",
+    "endDate": "2027-05-08",
+    "title": "Mediterrane Schätze mit Korsika ab Mallorca",
+    "fromCity": "Mallorca",
+    "duration": 7,
+    "stops": [
+      {
+        "place": "Mallorca",
+        "date": "2027-05-01",
+        "lat": 39.5696,
+        "lon": 2.6502
+      }
+    ]
+  },
+  {
+    "year": "2027",
+    "ship": "AIDAdiva",
+    "date": "2027-05-01",
+    "endDate": "2027-05-08",
+    "title": "Ostsee ab Warnemünde 1",
+    "fromCity": "Warnemünde",
+    "duration": 7,
+    "stops": [
+      {
+        "place": "Warnemünde",
+        "date": "2027-05-01",
+        "lat": 54.1766,
+        "lon": 12.0956
+      }
+    ]
+  },
+  {
+    "year": "2027",
+    "ship": "AIDAmar",
+    "date": "2027-05-01",
+    "endDate": "2027-05-06",
+    "title": "Kurzreise nach Schweden ab Warnemünde 2",
+    "fromCity": "Warnemünde",
+    "duration": 5,
+    "stops": [
+      {
+        "place": "Warnemünde",
+        "date": "2027-05-01",
+        "lat": 54.1766,
+        "lon": 12.0956
+      }
+    ]
+  },
+  {
+    "year": "2027",
+    "ship": "AIDAbella",
+    "date": "2027-05-02",
+    "endDate": "2027-05-06",
+    "title": "Kurzreise Norwegen & Dänemark ab Kiel 2",
+    "fromCity": "Kiel",
+    "duration": 4,
+    "stops": [
+      {
+        "place": "Kiel",
+        "date": "2027-05-02",
+        "lat": 54.3233,
+        "lon": 10.1228
+      }
+    ]
+  },
+  {
+    "year": "2027",
+    "ship": "AIDAbella",
+    "date": "2027-05-06",
+    "endDate": "2027-05-09",
+    "title": "Minikreuzfahrt nach Dänemark & Schweden ab Kiel",
+    "fromCity": "Kiel",
+    "duration": 3,
+    "stops": [
+      {
+        "place": "Kiel",
+        "date": "2027-05-06",
+        "lat": 54.3233,
+        "lon": 10.1228
+      }
+    ]
+  },
+  {
+    "year": "2027",
+    "ship": "AIDAcosma",
+    "date": "2027-05-07",
+    "endDate": "2027-05-14",
+    "title": "Mediterrane Schätze mit Gibraltar ab Barcelona",
+    "fromCity": "Barcelona",
+    "duration": 7,
+    "stops": [
+      {
+        "place": "Barcelona",
+        "date": "2027-05-07",
+        "lat": 41.3851,
+        "lon": 2.1734
+      }
+    ]
+  },
+  {
+    "year": "2027",
+    "ship": "AIDAblu",
+    "date": "2027-05-08",
+    "endDate": "2027-05-15",
+    "title": "Mittelmeerinseln ab Korfu",
+    "fromCity": "Korfu",
+    "duration": 7,
+    "stops": [
+      {
+        "place": "Korfu",
+        "date": "2027-05-08",
+        "lat": 39.6243,
+        "lon": 19.9217
+      }
+    ]
+  },
+  {
+    "year": "2027",
+    "ship": "AIDAcosma",
+    "date": "2027-05-08",
+    "endDate": "2027-05-15",
+    "title": "Mediterrane Schätze mit Gibraltar ab Mallorca",
+    "fromCity": "Mallorca",
+    "duration": 7,
+    "stops": [
+      {
+        "place": "Mallorca",
+        "date": "2027-05-08",
+        "lat": 39.5696,
+        "lon": 2.6502
+      }
+    ]
+  },
+  {
+    "year": "2027",
+    "ship": "AIDAmar",
+    "date": "2027-05-10",
+    "endDate": "2027-05-14",
+    "title": "Kurzreise nach Schweden ab Warnemünde 1",
+    "fromCity": "Warnemünde",
+    "duration": 4,
+    "stops": [
+      {
+        "place": "Warnemünde",
+        "date": "2027-05-10",
+        "lat": 54.1766,
+        "lon": 12.0956
+      }
+    ]
+  },
+  {
+    "year": "2027",
+    "ship": "AIDAblu",
+    "date": "2027-05-22",
+    "endDate": "2027-05-29",
+    "title": "Adria ab Korfu 2",
+    "fromCity": "Korfu",
+    "duration": 7,
+    "stops": [
+      {
+        "place": "Korfu",
+        "date": "2027-05-22",
+        "lat": 39.6243,
+        "lon": 19.9217
+      }
     ]
   }
 ]
