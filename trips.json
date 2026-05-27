@@ -1,0 +1,15 @@
+[
+  {
+    "year": "2026",
+    "ship": "AIDAnova",
+    "date": "2026-05-16",
+    "title": "Norwegen ab Kiel",
+    "stops": [
+      { "place": "Kiel", "date": "2026-05-16", "lat": 54.3233, "lon": 10.1228 },
+      { "place": "Bergen", "date": "2026-05-18", "lat": 60.39299, "lon": 5.32415 },
+      { "place": "Flåm", "date": "2026-05-19", "lat": 60.8616, "lon": 7.1140 },
+      { "place": "Ålesund", "date": "2026-05-20", "lat": 62.4722, "lon": 6.1495 },
+      { "place": "Haugesund", "date": "2026-05-21", "lat": 59.4138, "lon": 5.2680 }
+    ]
+  }
+]

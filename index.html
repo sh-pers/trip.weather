@@ -119,6 +119,28 @@
       background: var(--vanilla);
       color: var(--mocha);
     }
+
+    .controls {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 18px;
+        }
+
+        select {
+        padding: 12px;
+        border-radius: 14px;
+        border: 2px solid rgba(67,47,46,0.2);
+        background: #FEEFB6;
+        color: #432F2E;
+        font-weight: 700;
+        }
+
+        @media (max-width: 650px) {
+        .controls {
+            grid-template-columns: 1fr;
+        }
+    }
   
     @media (max-width: 650px) {
       main {
@@ -148,19 +170,121 @@
   </header>
 
   <main>
+    <div class="controls">
+        <select id="yearSelect"></select>
+        <select id="shipSelect"></select>
+        <select id="tripSelect"></select>
+      </div>
     <div id="weather" class="grid"></div>
   </main>
 
   
   
   <script>
-    const trip = [
-      { place: "Kiel", lat: 54.3233, lon: 10.1228, date: "2026-05-16" },
-      { place: "Bergen", lat: 60.39299, lon: 5.32415, date: "2026-05-18" },
-      { place: "Flåm", lat: 60.8616, lon: 7.1140, date: "2026-05-19" },
-      { place: "Ålesund", lat: 62.4722, lon: 6.1495, date: "2026-05-20" },
-      { place: "Haugesund", lat: 59.4138, lon: 5.2680, date: "2026-05-21" }
-    ];
+    let allTrips = [];
+    let selectedStops = [];
+
+    const yearSelect = document.getElementById("yearSelect");
+    const shipSelect = document.getElementById("shipSelect");
+    const tripSelect = document.getElementById("tripSelect");
+
+    async function loadTrips() {
+    const response = await fetch("trips.json");
+    allTrips = await response.json();
+
+    fillYears();
+    updateShips();
+    updateTrips();
+    await updateWeatherFromSelection();
+    }
+
+    function fillYears() {
+    const years = [...new Set(allTrips.map(trip => trip.year))].sort();
+
+    yearSelect.innerHTML = years
+        .map(year => `<option value="${year}">${year}</option>`)
+        .join("");
+    }
+
+    function updateShips() {
+    const selectedYear = yearSelect.value;
+
+    const ships = [...new Set(
+        allTrips
+        .filter(trip => trip.year === selectedYear)
+        .map(trip => trip.ship)
+    )].sort();
+
+    shipSelect.innerHTML = ships
+        .map(ship => `<option value="${ship}">${ship}</option>`)
+        .join("");
+    }
+
+    function updateTrips() {
+    const selectedYear = yearSelect.value;
+    const selectedShip = shipSelect.value;
+
+    const trips = allTrips.filter(trip =>
+        trip.year === selectedYear && trip.ship === selectedShip
+    );
+
+    tripSelect.innerHTML = trips
+        .map((trip, index) => `
+        <option value="${index}">
+            ${formatDate(trip.date)} · ${trip.title}
+        </option>
+        `)
+        .join("");
+    }
+
+    function getSelectedTrip() {
+    const selectedYear = yearSelect.value;
+    const selectedShip = shipSelect.value;
+
+    const trips = allTrips.filter(trip =>
+        trip.year === selectedYear && trip.ship === selectedShip
+    );
+
+    return trips[Number(tripSelect.value)];
+    }
+
+    async function updateWeatherFromSelection() {
+    const selectedTrip = getSelectedTrip();
+
+    if (!selectedTrip) {
+        weatherBox.innerHTML = "<p>Keine Reise gefunden.</p>";
+        return;
+    }
+
+    selectedStops = selectedTrip.stops;
+    weatherBox.innerHTML = "<p>Lade Wetterdaten...</p>";
+
+    try {
+        const results = await Promise.all(selectedStops.map(fetchWeather));
+        weatherBox.innerHTML = results.map(renderCard).join("");
+    } catch {
+        weatherBox.innerHTML = `
+        <section class="card error">
+            Wetter konnte nicht geladen werden.
+        </section>
+        `;
+    }
+    }
+
+    yearSelect.addEventListener("change", async () => {
+    updateShips();
+    updateTrips();
+    await updateWeatherFromSelection();
+    });
+
+    shipSelect.addEventListener("change", async () => {
+    updateTrips();
+    await updateWeatherFromSelection();
+    });
+
+    tripSelect.addEventListener("change", updateWeatherFromSelection);
+
+    loadTrips();
   
     const weatherBox = document.getElementById("weather");
   
