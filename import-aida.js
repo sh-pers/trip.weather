@@ -1,8 +1,9 @@
 const fs = require("fs/promises");
 
-const LOOKBACK_DAYS = 30;
 const FORECAST_DAYS = 16;
+
 const PORT_CACHE_FILE = "port-cache.json";
+const TRIPS_FILE = "trips.json";
 
 const PORT_NAME_OVERRIDES = {
   "ROM/CIVITAVECCHIA": "Civitavecchia",
@@ -11,8 +12,20 @@ const PORT_NAME_OVERRIDES = {
   "OLYMPIA/KATAKOLON": "Katakolon",
   "AJACCIO/KORSIKA": "Ajaccio",
   "SIZILIEN/CATANIA": "Catania",
+
+  "SOUDA-BUCHT": "Souda",
+  "KUSADASI": "Kuşadası",
+  "ATHEN/PIRÄUS": "Piraeus",
+  "DOVER/LONDON": "Dover",
+  "PORTLAND, UK": "Portland Dorset",
+  "ST.PETER PORT/GUERNSEY": "Saint Peter Port",
+  "SEVILLA/CADIZ": "Cadiz",
+
   "WELTERBE-AURLANDSFJORD-PASSA": "Flåm",
-  "AURLANDSFJORD-PASSAGE": "Flåm"
+  "AURLANDSFJORD-PASSAGE": "Flåm",
+
+  "INNVIKFJORD-PASSAGE": null,
+  "At Sea (Ship Parade)": null
 };
 
 function formatDate(date) {
@@ -26,12 +39,17 @@ function addDays(date, days) {
 }
 
 function buildUrl(from, to) {
-  return `https://aida.de/content/aida-search-and-booking/requests/search.singleCruise.json/size=20/sortCriteria=Date/sortDirection=Asc/pax[adults]=2/pax[juveniles]=0/pax[children]=0/pax[babies]=0/from=${from}/to=${to}.json`;
+  return `https://aida.de/content/aida-search-and-booking/requests/search.singleCruise.json/size=50/sortCriteria=Price/sortDirection=Asc/pax[adults]=2/pax[juveniles]=0/pax[children]=0/pax[babies]=0/from=${from}/to=${to}.json`;
 }
 
 function getPortDate(port) {
-  const dateTime = port.arrivalDateTime || port.departureDateTime;
-  return dateTime ? dateTime.slice(0, 10) : null;
+  const dateTime =
+    port.arrivalDateTime ||
+    port.departureDateTime;
+
+  return dateTime
+    ? dateTime.slice(0, 10)
+    : null;
 }
 
 function prettyName(name) {
@@ -41,58 +59,108 @@ function prettyName(name) {
     .toLowerCase()
     .split("/")
     .map(part => part.trim())
-    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+    .map(part =>
+      part.charAt(0).toUpperCase() +
+      part.slice(1)
+    )
     .join("/");
 }
 
 function geocodingName(name) {
-  return PORT_NAME_OVERRIDES[name] || prettyName(name);
+  if (
+    Object.prototype.hasOwnProperty.call(
+      PORT_NAME_OVERRIDES,
+      name
+    )
+  ) {
+    return PORT_NAME_OVERRIDES[name];
+  }
+
+  return prettyName(name);
 }
 
-async function readPortCache() {
+async function readJsonFile(file, fallback) {
   try {
-    const file = await fs.readFile(PORT_CACHE_FILE, "utf8");
-    return JSON.parse(file);
+    const content = await fs.readFile(
+      file,
+      "utf8"
+    );
+
+    return JSON.parse(content);
   } catch {
-    return {};
+    return fallback;
   }
 }
 
-async function writePortCache(cache) {
+async function writeJsonFile(file, data) {
   await fs.writeFile(
-    PORT_CACHE_FILE,
-    JSON.stringify(cache, null, 2),
+    file,
+    JSON.stringify(data, null, 2),
     "utf8"
   );
 }
 
+async function readPortCache() {
+  return readJsonFile(
+    PORT_CACHE_FILE,
+    {}
+  );
+}
+
+async function readExistingTrips() {
+  return readJsonFile(
+    TRIPS_FILE,
+    []
+  );
+}
+
 async function geocodePort(port, cache) {
-  if (!port.name || port.code === "SEE") return null;
+  if (!port.name) return null;
+  if (port.code === "SEE") return null;
 
   if (cache[port.code]) {
     return cache[port.code];
   }
 
-  const query = geocodingName(port.name);
+  const query =
+    geocodingName(port.name);
+
+  if (!query) {
+    console.log(
+      `Überspringe ${port.code} ${port.name}`
+    );
+
+    return null;
+  }
 
   const url =
     `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}` +
     `&count=1&language=de&format=json`;
 
-  console.log(`Geocoding: ${port.code} ${port.name} → ${query}`);
+  console.log(
+    `Geocoding: ${port.code} ${port.name} → ${query}`
+  );
 
   const response = await fetch(url);
 
   if (!response.ok) {
-    console.log(`Geocoding Fehler für ${port.code}`);
+    console.log(
+      `Geocoding Fehler für ${port.code}`
+    );
+
     return null;
   }
 
   const data = await response.json();
-  const result = data.results?.[0];
+
+  const result =
+    data.results?.[0];
 
   if (!result) {
-    console.log(`Keine Koordinaten gefunden für ${port.code} ${port.name}`);
+    console.log(
+      `Keine Koordinaten gefunden für ${port.code} ${port.name}`
+    );
+
     return null;
   }
 
@@ -101,42 +169,53 @@ async function geocodePort(port, cache) {
     query,
     lat: result.latitude,
     lon: result.longitude,
-    countryCode: result.country_code || null,
-    timezone: result.timezone || null
+    countryCode:
+      result.country_code || null,
+    timezone:
+      result.timezone || null
   };
 
   cache[port.code] = coords;
-  await writePortCache(cache);
+
+  await writeJsonFile(
+    PORT_CACHE_FILE,
+    cache
+  );
 
   return coords;
 }
 
-async function mapCruise(item, cache, todayString, forecastUntilString) {
-  if (!item.startDate || !item.endDate) return null;
+async function mapCruise(
+  item,
+  cache,
+  todayString,
+  forecastUntilString
+) {
+  if (!item.startDate) return null;
+  if (!item.endDate) return null;
 
-  const keepTrip =
-    item.endDate >= todayString &&
-    item.startDate <= forecastUntilString;
+  const variant =
+    item.cruiseItemVariant?.[0];
 
-  if (!keepTrip) return null;
-
-  const variant = item.cruiseItemVariant?.[0];
   const stops = [];
 
   for (const port of item.ports || []) {
-    const date = getPortDate(port);
+    const date =
+      getPortDate(port);
 
     if (!port.name) continue;
     if (!date) continue;
     if (port.code === "SEE") continue;
 
-    // Bei aktiven Kreuzfahrten vergangene Ziele nicht mehr anzeigen
+    // vergangene Stopps ausblenden
     if (date < todayString) continue;
 
-    // Ziele außerhalb des Wetter-Forecast-Zeitraums nicht anzeigen
+    // nur Forecast-Zeitraum
     if (date > forecastUntilString) continue;
 
-    const coords = await geocodePort(port, cache);
+    const coords =
+      await geocodePort(port, cache);
+
     if (!coords) continue;
 
     stops.push({
@@ -145,28 +224,41 @@ async function mapCruise(item, cache, todayString, forecastUntilString) {
       portCode: port.code,
       lat: coords.lat,
       lon: coords.lon,
-      arrivalDateTime: port.arrivalDateTime,
-      departureDateTime: port.departureDateTime
+      arrivalDateTime:
+        port.arrivalDateTime,
+      departureDateTime:
+        port.departureDateTime
     });
   }
 
-  if (!stops.length) return null;
-
   return {
-    year: item.startDate.slice(0, 4),
+    year:
+      item.startDate.slice(0, 4),
+
     ship:
       variant?.ship?.marketingName ||
       variant?.ship?.name ||
       "Unbekannt",
+
     date: item.startDate,
     endDate: item.endDate,
+
     title: item.title,
     duration: item.duration,
-    journeyIdentifier: variant?.journeyIdentifier || null,
-    bookingLink: variant?.bookingLink
-      ? `https://aida.de${variant.bookingLink}`
-      : null,
-    pricePerPerson: variant?.amountPerPerson || null,
+
+    journeyIdentifier:
+      variant?.journeyIdentifier ||
+      `${item.startDate}-${item.title}`,
+
+    bookingLink:
+      variant?.bookingLink
+        ? `https://aida.de${variant.bookingLink}`
+        : null,
+
+    pricePerPerson:
+      variant?.amountPerPerson ||
+      null,
+
     stops
   };
 }
@@ -185,67 +277,175 @@ async function fetchTrips(from, to) {
   });
 
   if (!response.ok) {
-    const errorText = await response.text();
+    const errorText =
+      await response.text();
+
     console.log(errorText);
-    throw new Error(`AIDA API Fehler ${response.status}: ${response.statusText}`);
+
+    throw new Error(
+      `AIDA API Fehler ${response.status}: ${response.statusText}`
+    );
   }
 
   return response.json();
 }
 
+function mergeTrips(
+  existingTrips,
+  newTrips
+) {
+  const map = new Map();
+
+  for (const trip of existingTrips) {
+    map.set(
+      trip.journeyIdentifier,
+      trip
+    );
+  }
+
+  for (const trip of newTrips) {
+    map.set(
+      trip.journeyIdentifier,
+      trip
+    );
+  }
+
+  return Array.from(
+    map.values()
+  );
+}
+
+function cleanupTrips(
+  trips,
+  todayString,
+  forecastUntilString
+) {
+  return trips
+
+    // Reise noch aktiv?
+    .filter(trip =>
+      trip.endDate >= todayString
+    )
+
+    // Nur relevante Stopps
+    .map(trip => ({
+      ...trip,
+      stops: (trip.stops || [])
+        .filter(stop =>
+          stop.date >= todayString &&
+          stop.date <= forecastUntilString
+        )
+    }))
+
+    // Reise noch sichtbar?
+    .filter(trip =>
+      trip.stops.length > 0
+    );
+}
+
 async function main() {
   const today = new Date();
 
-  const todayString = formatDate(today);
-  const searchFromString = formatDate(addDays(today, -LOOKBACK_DAYS));
-  const forecastUntilString = formatDate(addDays(today, FORECAST_DAYS));
+  const todayString =
+    formatDate(today);
 
-  console.log(`Heute: ${todayString}`);
-  console.log(`AIDA-Suche von ${searchFromString} bis ${forecastUntilString}`);
+  const forecastUntilString =
+    formatDate(
+      addDays(
+        today,
+        FORECAST_DAYS
+      )
+    );
 
-  const cache = await readPortCache();
-  const data = await fetchTrips(searchFromString, forecastUntilString);
+  console.log(
+    `Heute: ${todayString}`
+  );
 
-  const rawItems = data.cruiseItems || [];
+  console.log(
+    `Forecast bis ${forecastUntilString}`
+  );
 
-  console.log("Gefundene AIDA-Reisen:", rawItems.length);
+  const cache =
+    await readPortCache();
 
-  const trips = [];
+  const existingTrips =
+    await readExistingTrips();
 
-  for (const item of rawItems) {
-    const trip = await mapCruise(
-      item,
-      cache,
+  console.log(
+    `Bereits gespeichert: ${existingTrips.length}`
+  );
+
+  const data =
+    await fetchTrips(
       todayString,
       forecastUntilString
     );
 
-    if (trip) trips.push(trip);
-  }
+  const rawItems =
+    data.cruiseItems || [];
 
-  const uniqueTrips = Array.from(
-    new Map(
-      trips.map(trip => [
-        trip.journeyIdentifier ||
-          `${trip.ship}-${trip.date}-${trip.title}`,
-        trip
-      ])
-    ).values()
+  console.log(
+    `Neue Roh-Reisen: ${rawItems.length}`
   );
 
-  uniqueTrips.sort((a, b) =>
+  console.log(
+    `resultsTotal: ${data.resultsTotal}`
+  );
+
+  console.log(
+    `totalPages: ${data.totalPages}`
+  );
+
+  const newTrips = [];
+
+  for (const item of rawItems) {
+    const trip =
+      await mapCruise(
+        item,
+        cache,
+        todayString,
+        forecastUntilString
+      );
+
+    if (trip) {
+      newTrips.push(trip);
+    }
+  }
+
+  console.log(
+    `Neue gemappte Reisen: ${newTrips.length}`
+  );
+
+  const mergedTrips =
+    mergeTrips(
+      existingTrips,
+      newTrips
+    );
+
+  const cleanedTrips =
+    cleanupTrips(
+      mergedTrips,
+      todayString,
+      forecastUntilString
+    );
+
+  cleanedTrips.sort((a, b) =>
     a.date.localeCompare(b.date) ||
     a.ship.localeCompare(b.ship)
   );
 
-  await fs.writeFile(
-    "trips.json",
-    JSON.stringify(uniqueTrips, null, 2),
-    "utf8"
+  await writeJsonFile(
+    TRIPS_FILE,
+    cleanedTrips
   );
 
-  console.log(`${uniqueTrips.length} Reisen gespeichert in trips.json`);
-  console.log(`Port-Cache gespeichert in ${PORT_CACHE_FILE}`);
+  console.log(
+    `${cleanedTrips.length} Reisen gespeichert`
+  );
+
+  console.log(
+    `Port-Cache gespeichert in ${PORT_CACHE_FILE}`
+  );
 }
 
 main().catch(error => {

@@ -3,157 +3,358 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Urlaubswetter</title>
+  <title>CruiseWeather</title>
 
   <style>
     :root {
-      --navy: #0B1F33;
-      --deep-sea: #123A4A;
-      --ocean: #2F7188;
-      --foam: #F4FAFB;
-      --sand: #EAD8B8;
-      --coral: #F28C6B;
-      --muted: #78909C;
+      --navy: #071B2E;
+      --navy-soft: #0D2D47;
+      --ocean: #6EA9C9;
+      --mist: #DFE8EE;
+      --sand: #F4EFE6;
       --white: #FFFFFF;
+      --text: #102132;
+      --text-soft: #6F8190;
+      --gold: #D7A54A;
+      --danger: #F28C6B;
+      --shadow: 0 18px 48px rgba(7,27,46,0.14);
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top right, rgba(47,113,136,0.25), transparent 32%),
-        linear-gradient(180deg, var(--foam), #E7F1F3);
-      color: var(--navy);
+        radial-gradient(circle at top right, rgba(110,169,201,0.22), transparent 34%),
+        linear-gradient(180deg, #F7FAFB 0%, #EAF1F4 100%);
+      color: var(--text);
     }
 
-    header {
-      padding: 34px 18px 28px;
-      background: linear-gradient(135deg, var(--navy), var(--deep-sea));
-      color: var(--white);
-    }
-
-    main {
-      max-width: 1040px;
+    .app {
+      max-width: 1120px;
       margin: 0 auto;
       padding: 18px;
     }
 
-    h1 {
-      margin: 0 0 8px;
-      font-size: 34px;
-      font-weight: 900;
-      letter-spacing: -0.04em;
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 34px;
+      padding: 42px 28px 30px;
+      background:
+        radial-gradient(circle at 85% 10%, rgba(110,169,201,0.45), transparent 30%),
+        linear-gradient(145deg, var(--navy), var(--navy-soft));
+      color: var(--white);
+      box-shadow: var(--shadow);
     }
 
-    .hint {
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: -12%;
+      right: -12%;
+      bottom: -70px;
+      height: 150px;
+      background: rgba(255,255,255,0.055);
+      border-radius: 50%;
+    }
+
+    .brand {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 13px;
+      font-weight: 750;
+      color: rgba(255,255,255,0.86);
+      margin-bottom: 22px;
+    }
+
+    .brand-mark {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--gold);
+      display: grid;
+      place-items: center;
+      color: var(--navy);
+      font-size: 13px;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-size: clamp(38px, 7vw, 72px);
+      line-height: 0.95;
+      letter-spacing: -0.065em;
+      font-weight: 900;
+    }
+
+    .subtitle {
+      position: relative;
+      z-index: 1;
+      margin: 16px 0 0;
+      max-width: 560px;
       color: rgba(255,255,255,0.72);
-      font-size: 14px;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .controls-card {
+      margin: -18px 14px 24px;
+      position: relative;
+      z-index: 3;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.55);
+      border-radius: 28px;
+      padding: 16px;
+      box-shadow: 0 16px 40px rgba(7,27,46,0.10);
     }
 
     .controls {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
-      margin: 18px 0;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .select-wrap {
+      min-width: 0;
+    }
+
+    .select-label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 850;
+      color: var(--text-soft);
+      margin: 0 0 7px 4px;
     }
 
     select {
       appearance: none;
-      padding: 14px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(11,31,51,0.12);
-      background: var(--white);
-      color: var(--navy);
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      padding: 15px 44px 15px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(7,27,46,0.11);
+      background:
+        linear-gradient(45deg, transparent 50%, var(--text-soft) 50%) calc(100% - 22px) 50% / 7px 7px no-repeat,
+        linear-gradient(135deg, var(--text-soft) 50%, transparent 50%) calc(100% - 17px) 50% / 7px 7px no-repeat,
+        var(--white);
+      color: var(--text);
       font-weight: 750;
-      box-shadow: 0 8px 22px rgba(11,31,51,0.08);
+      font-size: 15px;
+      box-shadow: 0 8px 20px rgba(7,27,46,0.06);
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .grid {
+    select:focus {
+      outline: 2px solid rgba(215,165,74,0.55);
+      outline-offset: 2px;
+    }
+
+    .route-summary {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(244,239,230,0.75);
+      border: 1px solid rgba(215,165,74,0.18);
+      display: none;
+    }
+
+    .route-title {
+      font-size: 14px;
+      font-weight: 850;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+
+    .route-line {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .route-line::-webkit-scrollbar {
+      display: none;
+    }
+
+    .route-chip {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid rgba(7,27,46,0.08);
+    }
+
+    .route-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+
+    #weather {
       display: grid;
-      gap: 18px;
+      gap: 22px;
     }
 
-    .card {
-      background: rgba(255,255,255,0.82);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(11,31,51,0.10);
-      border-radius: 28px;
+    .status {
       padding: 18px;
-      box-shadow: 0 16px 36px rgba(11,31,51,0.10);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(7,27,46,0.08);
+      box-shadow: 0 10px 28px rgba(7,27,46,0.08);
+      color: var(--text-soft);
+      font-weight: 700;
     }
 
-    .top {
-      margin-bottom: 16px;
+    .port-card {
+      background: rgba(255,255,255,0.84);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 34px;
+      padding: 24px;
+      box-shadow: 0 16px 38px rgba(7,27,46,0.10);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .port-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 48px rgba(7,27,46,0.13);
+    }
+
+    .port-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(7,27,46,0.08);
+    }
+
+    .port-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 6px;
     }
 
     .place {
-      font-size: 25px;
+      font-size: 30px;
       font-weight: 900;
-      letter-spacing: -0.035em;
+      letter-spacing: -0.045em;
+      color: var(--navy);
+      line-height: 1;
     }
 
     .date {
-      margin-top: 3px;
+      margin-top: 7px;
       font-size: 14px;
-      color: var(--muted);
+      color: var(--text-soft);
+      font-weight: 650;
+    }
+
+    .port-badge {
+      flex: 0 0 auto;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: var(--sand);
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 850;
+      border: 1px solid rgba(215,165,74,0.18);
     }
 
     .values {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
     }
 
-    .value {
+    .weather-part {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(180deg, var(--deep-sea), var(--navy));
-      color: var(--foam);
-      border-radius: 22px;
+      min-width: 0;
+      border-radius: 26px;
       padding: 18px 14px;
-      min-height: 196px;
+      min-height: 210px;
+      background:
+        radial-gradient(circle at 50% 115%, rgba(110,169,201,0.22), transparent 45%),
+        linear-gradient(180deg, var(--navy-soft), var(--navy));
+      color: var(--white);
+      text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+      justify-content: flex-start;
     }
 
-    .value::after {
+    .weather-part::after {
       content: "";
       position: absolute;
-      inset: auto -20% -40% -20%;
-      height: 90px;
-      background: rgba(244,250,251,0.08);
+      left: -30%;
+      right: -30%;
+      bottom: -52px;
+      height: 100px;
       border-radius: 50%;
+      background: rgba(255,255,255,0.055);
     }
 
     .part-label {
       position: relative;
       z-index: 1;
-      font-size: 14px;
-      font-weight: 850;
-      color: var(--sand);
+      font-size: 12px;
+      font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 8px;
+      letter-spacing: 0.08em;
+      color: var(--sand);
+      margin-bottom: 10px;
     }
 
     .weather-icon {
       position: relative;
       z-index: 1;
-      font-size: 62px;
+      font-size: 58px;
       line-height: 1;
-      margin: 6px 0 12px;
+      margin: 4px 0 12px;
     }
 
     .number {
       position: relative;
       z-index: 1;
-      font-size: 24px;
+      font-size: 25px;
+      line-height: 1;
       font-weight: 950;
+      letter-spacing: -0.035em;
       color: var(--white);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .detail {
@@ -161,65 +362,123 @@
       z-index: 1;
       font-size: 13px;
       line-height: 1.45;
-      color: rgba(244,250,251,0.82);
+      color: rgba(255,255,255,0.76);
+      font-weight: 600;
     }
 
-    .error,
     .warning {
       background: #FFF4EC;
       color: var(--navy);
       border-color: rgba(242,140,107,0.35);
     }
 
+    @media (max-width: 820px) {
+      .values {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     @media (max-width: 650px) {
-      header {
-        padding: 28px 16px 24px;
-      }
-
-      h1 {
-        font-size: 30px;
-      }
-
-      main {
+      .app {
         padding: 12px;
       }
 
+      .hero {
+        border-radius: 28px;
+        padding: 36px 22px 34px;
+      }
+
+      .brand {
+        margin-bottom: 18px;
+      }
+
+      .subtitle {
+        font-size: 15px;
+      }
+
+      .controls-card {
+        margin: -16px 6px 20px;
+        padding: 14px;
+        border-radius: 24px;
+      }
+
       .controls {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      select {
+        width: 100%;
+        min-width: 0;
+        font-size: 15px;
+      }
+
+      .port-card {
+        border-radius: 28px;
+        padding: 18px;
+      }
+
+      .port-head {
+        display: block;
+      }
+
+      .port-badge {
+        display: inline-flex;
+        margin-top: 12px;
+      }
+
+      .place {
+        font-size: 28px;
       }
 
       .values {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
 
-      .value {
+      .weather-part {
         min-height: auto;
         padding: 20px 16px;
       }
 
       .weather-icon {
-        font-size: 68px;
+        font-size: 64px;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>Urlaubswetter</h1>
-    <div class="hint">Aktuelle Prognose für deine Kreuzfahrt</div>
-  </header>
+  <div class="app">
+    <header class="hero">
+      <div class="brand">
+        <span class="brand-mark">≈</span>
+        CruiseWeather
+      </div>
 
-  <main>
+      <h1>Port forecasts<br>for your cruise.</h1>
+      <p class="subtitle">
+        Aktuelle Wetterprognosen für deine kommenden Häfen — übersichtlich nach Vormittag,
+        Nachmittag, Abend und Nacht.
+      </p>
+    </header>
 
-    <div class="controls">
-      <select id="shipSelect"></select>
-      <select id="tripSelect"></select>
-    </div>
+    <section class="controls-card">
+      <div class="controls">
+        <div class="select-wrap">
+          <label class="select-label" for="shipSelect">Schiff</label>
+          <select id="shipSelect"></select>
+        </div>
 
-    <div id="weather" class="grid"></div>
+        <div class="select-wrap">
+          <label class="select-label" for="tripSelect">Reise</label>
+          <select id="tripSelect"></select>
+        </div>
+      </div>
 
-  </main>
+      <div id="routeSummary" class="route-summary"></div>
+    </section>
+
+    <main id="weather"></main>
+  </div>
 
   <script>
     let allTrips = [];
@@ -228,6 +487,7 @@
     const weatherBox = document.getElementById("weather");
     const shipSelect = document.getElementById("shipSelect");
     const tripSelect = document.getElementById("tripSelect");
+    const routeSummary = document.getElementById("routeSummary");
 
     const weatherCache = new Map();
     let requestVersion = 0;
@@ -262,7 +522,6 @@
       if ([71, 73, 75, 77].includes(code)) return { icon: "🌨️", text: "Schnee" };
       if ([80, 81, 82].includes(code)) return { icon: "🌦️", text: "Schauer" };
       if ([95, 96, 99].includes(code)) return { icon: "⛈️", text: "Gewitter" };
-
       return { icon: "❔", text: "Unklar" };
     }
 
@@ -292,13 +551,14 @@
     }
 
     async function loadTrips() {
-      weatherBox.innerHTML = "<p>Lade Reisen...</p>";
+      weatherBox.innerHTML = `<div class="status">Lade Reisen...</div>`;
 
       const response = await fetch("trips.json");
       allTrips = await response.json();
 
       updateShips();
       updateTrips();
+      updateRouteSummary();
 
       await updateWeatherFromSelection();
     }
@@ -339,6 +599,30 @@
       return trips[Number(tripSelect.value)];
     }
 
+    function updateRouteSummary() {
+      const selectedTrip = getSelectedTrip();
+
+      if (!selectedTrip || !selectedTrip.stops?.length) {
+        routeSummary.style.display = "none";
+        routeSummary.innerHTML = "";
+        return;
+      }
+
+      routeSummary.style.display = "block";
+
+      routeSummary.innerHTML = `
+        <div class="route-title">${selectedTrip.ship} · ${selectedTrip.title}</div>
+        <div class="route-line">
+          ${selectedTrip.stops.map(stop => `
+            <span class="route-chip">
+              <span class="route-dot"></span>
+              ${stop.place}
+            </span>
+          `).join("")}
+        </div>
+      `;
+    }
+
     async function fetchWeather(stop) {
       if (!stop.lat || !stop.lon) {
         return {
@@ -372,19 +656,12 @@
             const hour = new Date(item.time).getHours();
             const date = item.time.slice(0, 10);
 
-            return (
-              date === stop.date &&
-              hour >= part.from &&
-              hour < part.to
-            );
+            return date === stop.date && hour >= part.from && hour < part.to;
           })
           .map(item => item.index);
 
         if (!indexes.length) {
-          return {
-            ...part,
-            unavailable: true
-          };
+          return { ...part, unavailable: true };
         }
 
         const temps = indexes.map(i => data.hourly.temperature_2m[i]);
@@ -416,7 +693,6 @@
       }
 
       const result = await fetchWeather(stop);
-
       weatherCache.set(key, result);
 
       await sleep(500);
@@ -426,11 +702,12 @@
 
     async function updateWeatherFromSelection() {
       const currentVersion = ++requestVersion;
-
       const selectedTrip = getSelectedTrip();
 
+      updateRouteSummary();
+
       if (!selectedTrip) {
-        weatherBox.innerHTML = "<p>Keine Reise gefunden.</p>";
+        weatherBox.innerHTML = `<div class="status">Keine Reise gefunden.</div>`;
         return;
       }
 
@@ -438,14 +715,14 @@
 
       if (!selectedStops.length) {
         weatherBox.innerHTML = `
-          <section class="card warning">
+          <section class="port-card warning">
             Keine Hafenstopps vorhanden.
           </section>
         `;
         return;
       }
 
-      weatherBox.innerHTML = "<p>Lade Wetterdaten...</p>";
+      weatherBox.innerHTML = `<div class="status">Lade Wetterdaten...</div>`;
 
       const results = [];
 
@@ -453,18 +730,16 @@
         if (currentVersion !== requestVersion) return;
 
         const result = await fetchWeatherCached(stop);
-
         results.push(result);
 
-        weatherBox.innerHTML =
-          results.map(renderCard).join("");
+        weatherBox.innerHTML = results.map(renderCard).join("");
       }
     }
 
     function renderPart(part) {
       if (part.unavailable) {
         return `
-          <div class="value">
+          <div class="weather-part">
             <div class="part-label">${part.label}</div>
             <div class="weather-icon">—</div>
             <div class="detail">Noch nicht verfügbar</div>
@@ -475,17 +750,13 @@
       const info = weatherInfo(part.weatherCode);
 
       return `
-        <div class="value">
+        <div class="weather-part">
           <div class="part-label">${part.label}</div>
           <div class="weather-icon">${info.icon}</div>
           <div class="number">${part.tempMin}–${part.tempMax} °C</div>
           <div class="detail">${info.text}</div>
-          <div class="detail">
-            Regen: ${part.precipProbability}% / ${part.precipitation} mm
-          </div>
-          <div class="detail">
-            Wind: ${part.wind} km/h
-          </div>
+          <div class="detail">Regen: ${part.precipProbability}% / ${part.precipitation} mm</div>
+          <div class="detail">Wind: ${part.wind} km/h</div>
         </div>
       `;
     }
@@ -493,26 +764,28 @@
     function renderCard(result) {
       if (result.unavailable) {
         return `
-          <section class="card warning">
-            <div class="top">
+          <section class="port-card warning">
+            <div class="port-head">
               <div>
+                <div class="port-kicker">Port Forecast</div>
                 <div class="place">${result.stop.place}</div>
                 <div class="date">${formatDate(result.stop.date)}</div>
               </div>
             </div>
-
             <p>${result.reason}</p>
           </section>
         `;
       }
 
       return `
-        <section class="card">
-          <div class="top">
+        <section class="port-card">
+          <div class="port-head">
             <div>
+              <div class="port-kicker">Port Forecast</div>
               <div class="place">${result.stop.place}</div>
               <div class="date">${formatDate(result.stop.date)}</div>
             </div>
+            <div class="port-badge">${result.stop.portCode || "Port"}</div>
           </div>
 
           <div class="values">
@@ -524,13 +797,14 @@
 
     shipSelect.addEventListener("change", async () => {
       updateTrips();
+      updateRouteSummary();
       await updateWeatherFromSelection();
     });
 
-    tripSelect.addEventListener(
-      "change",
-      updateWeatherFromSelection
-    );
+    tripSelect.addEventListener("change", async () => {
+      updateRouteSummary();
+      await updateWeatherFromSelection();
+    });
 
     loadTrips();
   </script>

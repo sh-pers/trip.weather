@@ -74,8 +74,8 @@
     "title": "Adria ab Korfu 1",
     "duration": 7,
     "journeyIdentifier": "BL07260530",
-    "bookingLink": "https://aida.de/BL07260530/CLASSIC/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
-    "pricePerPerson": 1049,
+    "bookingLink": "https://aida.de/BL07260530/PREMIUM/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 1685,
     "stops": [
       {
         "place": "Korfu",
@@ -293,8 +293,8 @@
     "title": "Metropolen ab Hamburg",
     "duration": 7,
     "journeyIdentifier": "PE07260530",
-    "bookingLink": "https://aida.de/PE07260530/LIGHT/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
-    "pricePerPerson": 919,
+    "bookingLink": "https://aida.de/PE07260530/PREMIUM/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 2440,
     "stops": [
       {
         "place": "Hamburg",
@@ -361,7 +361,7 @@
     "duration": 7,
     "journeyIdentifier": "PR07260601",
     "bookingLink": "https://aida.de/PR07260601/CLASSIC/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
-    "pricePerPerson": 1129,
+    "pricePerPerson": 879,
     "stops": [
       {
         "place": "Hamburg",
@@ -430,6 +430,511 @@
   },
   {
     "year": "2026",
+    "ship": "AIDAcosma",
+    "date": "2026-06-05",
+    "endDate": "2026-06-12",
+    "title": "Mediterrane Schätze mit Gibraltar ab Barcelona",
+    "duration": 7,
+    "journeyIdentifier": "CO07260605",
+    "bookingLink": "https://aida.de/CO07260605/CLASSIC/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 1379,
+    "stops": [
+      {
+        "place": "Barcelona",
+        "date": "2026-06-05",
+        "portCode": "ESBCN",
+        "lat": 41.38879,
+        "lon": 2.15899,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-05T18:00:00"
+      },
+      {
+        "place": "Palma",
+        "date": "2026-06-06",
+        "portCode": "ESPMI",
+        "lat": 39.56939,
+        "lon": 2.65024,
+        "arrivalDateTime": "2026-06-06T05:00:00",
+        "departureDateTime": null
+      },
+      {
+        "place": "Palma",
+        "date": "2026-06-07",
+        "portCode": "ESPMI",
+        "lat": 39.56939,
+        "lon": 2.65024,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-07T20:00:00"
+      },
+      {
+        "place": "Gibraltar",
+        "date": "2026-06-09",
+        "portCode": "GIGIB",
+        "lat": 36.14474,
+        "lon": -5.35257,
+        "arrivalDateTime": "2026-06-09T08:00:00",
+        "departureDateTime": "2026-06-09T18:00:00"
+      },
+      {
+        "place": "Cartagena",
+        "date": "2026-06-10",
+        "portCode": "ESCAR",
+        "lat": 10.39817,
+        "lon": -75.49328,
+        "arrivalDateTime": "2026-06-10T11:00:00",
+        "departureDateTime": "2026-06-10T20:00:00"
+      },
+      {
+        "place": "Ibiza",
+        "date": "2026-06-11",
+        "portCode": "ESIBZ",
+        "lat": 38.90883,
+        "lon": 1.43296,
+        "arrivalDateTime": "2026-06-11T12:30:00",
+        "departureDateTime": "2026-06-11T19:00:00"
+      },
+      {
+        "place": "Barcelona",
+        "date": "2026-06-12",
+        "portCode": "ESBCN",
+        "lat": 41.38879,
+        "lon": 2.15899,
+        "arrivalDateTime": "2026-06-12T06:00:00",
+        "departureDateTime": null
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAblu",
+    "date": "2026-06-06",
+    "endDate": "2026-06-13",
+    "title": "Griechenland ab Korfu 1",
+    "duration": 7,
+    "journeyIdentifier": "BL07260606",
+    "bookingLink": "https://aida.de/BL07260606/LIGHT/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0&flightType=air&depAirport=DUS&arrAirport=DUS",
+    "pricePerPerson": 1099,
+    "stops": [
+      {
+        "place": "Korfu",
+        "date": "2026-06-06",
+        "portCode": "GRCFU",
+        "lat": 39.62441,
+        "lon": 19.92016,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-06T22:00:00"
+      },
+      {
+        "place": "Souda-bucht",
+        "date": "2026-06-08",
+        "portCode": "GRGAF",
+        "lat": 35.48717,
+        "lon": 24.07344,
+        "arrivalDateTime": "2026-06-08T08:00:00",
+        "departureDateTime": "2026-06-08T18:00:00"
+      },
+      {
+        "place": "Kos",
+        "date": "2026-06-09",
+        "portCode": "GRKGS",
+        "lat": 10.60932,
+        "lon": 103.52958,
+        "arrivalDateTime": "2026-06-09T09:00:00",
+        "departureDateTime": "2026-06-09T19:00:00"
+      },
+      {
+        "place": "Kusadasi",
+        "date": "2026-06-10",
+        "portCode": "TRKUS",
+        "lat": 37.86014,
+        "lon": 27.25713,
+        "arrivalDateTime": "2026-06-10T08:00:00",
+        "departureDateTime": "2026-06-10T18:00:00"
+      },
+      {
+        "place": "Athen/Piräus",
+        "date": "2026-06-11",
+        "portCode": "GRPIR",
+        "lat": 37.94203,
+        "lon": 23.64619,
+        "arrivalDateTime": "2026-06-11T10:00:00",
+        "departureDateTime": "2026-06-11T20:00:00"
+      },
+      {
+        "place": "Korfu",
+        "date": "2026-06-13",
+        "portCode": "GRCFU",
+        "lat": 39.62441,
+        "lon": 19.92016,
+        "arrivalDateTime": "2026-06-13T06:00:00",
+        "departureDateTime": null
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAcosma",
+    "date": "2026-06-06",
+    "endDate": "2026-06-13",
+    "title": "Mediterrane Schätze mit Gibraltar ab Mallorca",
+    "duration": 7,
+    "journeyIdentifier": "CO07260606",
+    "bookingLink": "https://aida.de/CO07260606/CLASSIC/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0&flightType=air&depAirport=HAJ&arrAirport=HAJ",
+    "pricePerPerson": 1299,
+    "stops": [
+      {
+        "place": "Palma",
+        "date": "2026-06-06",
+        "portCode": "ESPMI",
+        "lat": 39.56939,
+        "lon": 2.65024,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-06T00:00:00"
+      },
+      {
+        "place": "Palma",
+        "date": "2026-06-07",
+        "portCode": "ESPMI",
+        "lat": 39.56939,
+        "lon": 2.65024,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-07T20:00:00"
+      },
+      {
+        "place": "Gibraltar",
+        "date": "2026-06-09",
+        "portCode": "GIGIB",
+        "lat": 36.14474,
+        "lon": -5.35257,
+        "arrivalDateTime": "2026-06-09T08:00:00",
+        "departureDateTime": "2026-06-09T18:00:00"
+      },
+      {
+        "place": "Cartagena",
+        "date": "2026-06-10",
+        "portCode": "ESCAR",
+        "lat": 10.39817,
+        "lon": -75.49328,
+        "arrivalDateTime": "2026-06-10T11:00:00",
+        "departureDateTime": "2026-06-10T20:00:00"
+      },
+      {
+        "place": "Ibiza",
+        "date": "2026-06-11",
+        "portCode": "ESIBZ",
+        "lat": 38.90883,
+        "lon": 1.43296,
+        "arrivalDateTime": "2026-06-11T12:30:00",
+        "departureDateTime": "2026-06-11T19:00:00"
+      },
+      {
+        "place": "Barcelona",
+        "date": "2026-06-12",
+        "portCode": "ESBCN",
+        "lat": 41.38879,
+        "lon": 2.15899,
+        "arrivalDateTime": "2026-06-12T06:00:00",
+        "departureDateTime": "2026-06-12T18:00:00"
+      },
+      {
+        "place": "Palma",
+        "date": "2026-06-13",
+        "portCode": "ESPMI",
+        "lat": 39.56939,
+        "lon": 2.65024,
+        "arrivalDateTime": "2026-06-13T05:00:00",
+        "departureDateTime": null
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAnova",
+    "date": "2026-06-06",
+    "endDate": "2026-06-13",
+    "title": "Skandinavische Highlights ab Kiel",
+    "duration": 7,
+    "journeyIdentifier": "NO07260606",
+    "bookingLink": "https://aida.de/NO07260606/LIGHT/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 749,
+    "stops": [
+      {
+        "place": "Kiel",
+        "date": "2026-06-06",
+        "portCode": "DEKEL",
+        "lat": 54.32133,
+        "lon": 10.13489,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-06T17:00:00"
+      },
+      {
+        "place": "Oslo",
+        "date": "2026-06-08",
+        "portCode": "NOOSL",
+        "lat": 59.91273,
+        "lon": 10.74609,
+        "arrivalDateTime": "2026-06-08T08:00:00",
+        "departureDateTime": "2026-06-08T18:00:00"
+      },
+      {
+        "place": "Skagen",
+        "date": "2026-06-09",
+        "portCode": "DKSKA",
+        "lat": 57.72093,
+        "lon": 10.58394,
+        "arrivalDateTime": "2026-06-09T08:00:00",
+        "departureDateTime": "2026-06-09T18:00:00"
+      },
+      {
+        "place": "Kristiansand",
+        "date": "2026-06-10",
+        "portCode": "NOKRS",
+        "lat": 58.14671,
+        "lon": 7.9956,
+        "arrivalDateTime": "2026-06-10T08:00:00",
+        "departureDateTime": "2026-06-10T18:00:00"
+      },
+      {
+        "place": "Kopenhagen",
+        "date": "2026-06-11",
+        "portCode": "DKCPH",
+        "lat": 55.67594,
+        "lon": 12.56553,
+        "arrivalDateTime": "2026-06-11T10:00:00",
+        "departureDateTime": "2026-06-11T20:00:00"
+      },
+      {
+        "place": "Arhus",
+        "date": "2026-06-12",
+        "portCode": "DKAAR",
+        "lat": 56.15674,
+        "lon": 10.21076,
+        "arrivalDateTime": "2026-06-12T08:00:00",
+        "departureDateTime": "2026-06-12T18:00:00"
+      },
+      {
+        "place": "Kiel",
+        "date": "2026-06-13",
+        "portCode": "DEKEL",
+        "lat": 54.32133,
+        "lon": 10.13489,
+        "arrivalDateTime": "2026-06-13T08:00:00",
+        "departureDateTime": null
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAnova",
+    "date": "2026-06-06",
+    "endDate": "2026-06-20",
+    "title": "Große Skandinavien-Reise ab Kiel",
+    "duration": 14,
+    "journeyIdentifier": "NO14260606",
+    "bookingLink": "https://aida.de/NO14260606/CLASSIC/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 2529,
+    "stops": [
+      {
+        "place": "Kiel",
+        "date": "2026-06-06",
+        "portCode": "DEKEL",
+        "lat": 54.32133,
+        "lon": 10.13489,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-06T17:00:00"
+      },
+      {
+        "place": "Oslo",
+        "date": "2026-06-08",
+        "portCode": "NOOSL",
+        "lat": 59.91273,
+        "lon": 10.74609,
+        "arrivalDateTime": "2026-06-08T08:00:00",
+        "departureDateTime": "2026-06-08T18:00:00"
+      },
+      {
+        "place": "Skagen",
+        "date": "2026-06-09",
+        "portCode": "DKSKA",
+        "lat": 57.72093,
+        "lon": 10.58394,
+        "arrivalDateTime": "2026-06-09T08:00:00",
+        "departureDateTime": "2026-06-09T18:00:00"
+      },
+      {
+        "place": "Kristiansand",
+        "date": "2026-06-10",
+        "portCode": "NOKRS",
+        "lat": 58.14671,
+        "lon": 7.9956,
+        "arrivalDateTime": "2026-06-10T08:00:00",
+        "departureDateTime": "2026-06-10T18:00:00"
+      },
+      {
+        "place": "Kopenhagen",
+        "date": "2026-06-11",
+        "portCode": "DKCPH",
+        "lat": 55.67594,
+        "lon": 12.56553,
+        "arrivalDateTime": "2026-06-11T10:00:00",
+        "departureDateTime": "2026-06-11T20:00:00"
+      },
+      {
+        "place": "Arhus",
+        "date": "2026-06-12",
+        "portCode": "DKAAR",
+        "lat": 56.15674,
+        "lon": 10.21076,
+        "arrivalDateTime": "2026-06-12T08:00:00",
+        "departureDateTime": "2026-06-12T18:00:00"
+      },
+      {
+        "place": "Kiel",
+        "date": "2026-06-13",
+        "portCode": "DEKEL",
+        "lat": 54.32133,
+        "lon": 10.13489,
+        "arrivalDateTime": "2026-06-13T08:00:00",
+        "departureDateTime": "2026-06-13T17:00:00"
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAperla",
+    "date": "2026-06-06",
+    "endDate": "2026-06-13",
+    "title": "30 Jahre AIDA mit No Angels",
+    "duration": 7,
+    "journeyIdentifier": "PE07260606",
+    "bookingLink": "https://aida.de/PE07260606/CLASSIC/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 829,
+    "stops": [
+      {
+        "place": "Hamburg",
+        "date": "2026-06-06",
+        "portCode": "DEHAM",
+        "lat": 53.55073,
+        "lon": 9.99302,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-06T00:00:00"
+      },
+      {
+        "place": "Hamburg",
+        "date": "2026-06-07",
+        "portCode": "DEHAM",
+        "lat": 53.55073,
+        "lon": 9.99302,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-07T18:00:00"
+      },
+      {
+        "place": "Haugesund",
+        "date": "2026-06-09",
+        "portCode": "NOHAU",
+        "lat": 59.41378,
+        "lon": 5.268,
+        "arrivalDateTime": "2026-06-09T07:00:00",
+        "departureDateTime": "2026-06-09T16:00:00"
+      },
+      {
+        "place": "Nordfjordeid",
+        "date": "2026-06-10",
+        "portCode": "NONFD",
+        "lat": 61.9122,
+        "lon": 5.98557,
+        "arrivalDateTime": "2026-06-10T08:00:00",
+        "departureDateTime": "2026-06-10T18:00:00"
+      },
+      {
+        "place": "Stavanger",
+        "date": "2026-06-11",
+        "portCode": "NOSVG",
+        "lat": 58.97005,
+        "lon": 5.73332,
+        "arrivalDateTime": "2026-06-11T10:30:00",
+        "departureDateTime": "2026-06-11T20:30:00"
+      },
+      {
+        "place": "Hamburg",
+        "date": "2026-06-13",
+        "portCode": "DEHAM",
+        "lat": 53.55073,
+        "lon": 9.99302,
+        "arrivalDateTime": "2026-06-13T08:00:00",
+        "departureDateTime": null
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAperla",
+    "date": "2026-06-06",
+    "endDate": "2026-06-20",
+    "title": "Metropolen & Norwegen ab Hamburg",
+    "duration": 14,
+    "journeyIdentifier": "PE14260606",
+    "bookingLink": "https://aida.de/PE14260606/PREMIUM/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 2150,
+    "stops": [
+      {
+        "place": "Hamburg",
+        "date": "2026-06-06",
+        "portCode": "DEHAM",
+        "lat": 53.55073,
+        "lon": 9.99302,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-06T00:00:00"
+      },
+      {
+        "place": "Hamburg",
+        "date": "2026-06-07",
+        "portCode": "DEHAM",
+        "lat": 53.55073,
+        "lon": 9.99302,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-07T18:00:00"
+      },
+      {
+        "place": "Haugesund",
+        "date": "2026-06-09",
+        "portCode": "NOHAU",
+        "lat": 59.41378,
+        "lon": 5.268,
+        "arrivalDateTime": "2026-06-09T07:00:00",
+        "departureDateTime": "2026-06-09T16:00:00"
+      },
+      {
+        "place": "Nordfjordeid",
+        "date": "2026-06-10",
+        "portCode": "NONFD",
+        "lat": 61.9122,
+        "lon": 5.98557,
+        "arrivalDateTime": "2026-06-10T08:00:00",
+        "departureDateTime": "2026-06-10T18:00:00"
+      },
+      {
+        "place": "Stavanger",
+        "date": "2026-06-11",
+        "portCode": "NOSVG",
+        "lat": 58.97005,
+        "lon": 5.73332,
+        "arrivalDateTime": "2026-06-11T10:30:00",
+        "departureDateTime": "2026-06-11T20:30:00"
+      },
+      {
+        "place": "Hamburg",
+        "date": "2026-06-13",
+        "portCode": "DEHAM",
+        "lat": 53.55073,
+        "lon": 9.99302,
+        "arrivalDateTime": "2026-06-13T08:00:00",
+        "departureDateTime": "2026-06-13T17:00:00"
+      }
+    ]
+  },
+  {
+    "year": "2026",
     "ship": "AIDAmar",
     "date": "2026-06-07",
     "endDate": "2026-06-11",
@@ -488,6 +993,113 @@
   },
   {
     "year": "2026",
+    "ship": "AIDAsol",
+    "date": "2026-06-07",
+    "endDate": "2026-06-14",
+    "title": "Westeuropa & Geburtstagsparade auf der Elbe",
+    "duration": 7,
+    "journeyIdentifier": "SO07260607",
+    "bookingLink": "https://aida.de/SO07260607/CLASSIC/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 1249,
+    "stops": [
+      {
+        "place": "Hamburg",
+        "date": "2026-06-07",
+        "portCode": "DEHAM",
+        "lat": 53.55073,
+        "lon": 9.99302,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-07T18:30:00"
+      },
+      {
+        "place": "Dover/London",
+        "date": "2026-06-09",
+        "portCode": "GBDVR",
+        "lat": 39.15817,
+        "lon": -75.52437,
+        "arrivalDateTime": "2026-06-09T08:00:00",
+        "departureDateTime": "2026-06-09T19:00:00"
+      },
+      {
+        "place": "St.peter port/Guernsey",
+        "date": "2026-06-11",
+        "portCode": "GBPPO",
+        "lat": 49.45981,
+        "lon": -2.53527,
+        "arrivalDateTime": "2026-06-11T08:00:00",
+        "departureDateTime": "2026-06-11T20:00:00"
+      },
+      {
+        "place": "Cherbourg",
+        "date": "2026-06-12",
+        "portCode": "FRCER",
+        "lat": 48.11815,
+        "lon": -123.43074,
+        "arrivalDateTime": "2026-06-12T08:00:00",
+        "departureDateTime": "2026-06-12T19:00:00"
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAstella",
+    "date": "2026-06-07",
+    "endDate": "2026-06-18",
+    "title": "Spanien, Portugal & Balearen ab Mallorca",
+    "duration": 11,
+    "journeyIdentifier": "ST11260607",
+    "bookingLink": "https://aida.de/ST11260607/CLASSIC/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0&flightType=air&depAirport=VIE&arrAirport=VIE",
+    "pricePerPerson": 1669,
+    "stops": [
+      {
+        "place": "Palma",
+        "date": "2026-06-07",
+        "portCode": "ESPMI",
+        "lat": 39.56939,
+        "lon": 2.65024,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-07T22:00:00"
+      },
+      {
+        "place": "Malaga",
+        "date": "2026-06-09",
+        "portCode": "ESAGP",
+        "lat": 36.72016,
+        "lon": -4.42034,
+        "arrivalDateTime": "2026-06-09T08:30:00",
+        "departureDateTime": "2026-06-09T18:00:00"
+      },
+      {
+        "place": "Sevilla/Cadiz",
+        "date": "2026-06-10",
+        "portCode": "ESCAD",
+        "lat": 36.52672,
+        "lon": -6.2891,
+        "arrivalDateTime": "2026-06-10T08:00:00",
+        "departureDateTime": "2026-06-10T18:00:00"
+      },
+      {
+        "place": "Lissabon",
+        "date": "2026-06-11",
+        "portCode": "PTLIS",
+        "lat": 38.72509,
+        "lon": -9.1498,
+        "arrivalDateTime": "2026-06-11T14:30:00",
+        "departureDateTime": null
+      },
+      {
+        "place": "Lissabon",
+        "date": "2026-06-12",
+        "portCode": "PTLIS",
+        "lat": 38.72509,
+        "lon": -9.1498,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-12T16:00:00"
+      }
+    ]
+  },
+  {
+    "year": "2026",
     "ship": "AIDAprima",
     "date": "2026-06-08",
     "endDate": "2026-06-12",
@@ -523,6 +1135,231 @@
         "lon": 9.99302,
         "arrivalDateTime": "2026-06-12T08:00:00",
         "departureDateTime": null
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAmar",
+    "date": "2026-06-11",
+    "endDate": "2026-06-16",
+    "title": "Kurzreise nach Skandinavien ab Warnemünde",
+    "duration": 5,
+    "journeyIdentifier": "MA05260611",
+    "bookingLink": "https://aida.de/MA05260611/CLASSIC/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 649,
+    "stops": [
+      {
+        "place": "Warnemünde",
+        "date": "2026-06-11",
+        "portCode": "DEWAR",
+        "lat": 54.1767,
+        "lon": 12.08402,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-11T17:00:00"
+      },
+      {
+        "place": "Nyborg",
+        "date": "2026-06-12",
+        "portCode": "DKNBG",
+        "lat": 55.31274,
+        "lon": 10.78964,
+        "arrivalDateTime": "2026-06-12T08:00:00",
+        "departureDateTime": "2026-06-12T18:00:00"
+      },
+      {
+        "place": "Göteborg",
+        "date": "2026-06-13",
+        "portCode": "SEGOT",
+        "lat": 57.70716,
+        "lon": 11.96679,
+        "arrivalDateTime": "2026-06-13T08:00:00",
+        "departureDateTime": "2026-06-13T18:00:00"
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAcosma",
+    "date": "2026-06-12",
+    "endDate": "2026-06-19",
+    "title": "Mediterrane Schätze mit Korsika ab Barcelona",
+    "duration": 7,
+    "journeyIdentifier": "CO07260612",
+    "bookingLink": "https://aida.de/CO07260612/CLASSIC/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 799,
+    "stops": [
+      {
+        "place": "Barcelona",
+        "date": "2026-06-12",
+        "portCode": "ESBCN",
+        "lat": 41.38879,
+        "lon": 2.15899,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-12T18:00:00"
+      },
+      {
+        "place": "Palma",
+        "date": "2026-06-13",
+        "portCode": "ESPMI",
+        "lat": 39.56939,
+        "lon": 2.65024,
+        "arrivalDateTime": "2026-06-13T05:00:00",
+        "departureDateTime": "2026-06-13T22:00:00"
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAprima",
+    "date": "2026-06-12",
+    "endDate": "2026-06-21",
+    "title": "Norwegens Fjorde ab Hamburg",
+    "duration": 9,
+    "journeyIdentifier": "PR09260612",
+    "bookingLink": "https://aida.de/PR09260612/LIGHT/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 1399,
+    "stops": [
+      {
+        "place": "Hamburg",
+        "date": "2026-06-12",
+        "portCode": "DEHAM",
+        "lat": 53.55073,
+        "lon": 9.99302,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-12T18:00:00"
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAblu",
+    "date": "2026-06-13",
+    "endDate": "2026-06-20",
+    "title": "Mittelmeerinseln ab Korfu",
+    "duration": 7,
+    "journeyIdentifier": "BL07260613",
+    "bookingLink": "https://aida.de/BL07260613/CLASSIC/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 1079,
+    "stops": [
+      {
+        "place": "Korfu",
+        "date": "2026-06-13",
+        "portCode": "GRCFU",
+        "lat": 39.62441,
+        "lon": 19.92016,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-13T22:00:00"
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAcosma",
+    "date": "2026-06-13",
+    "endDate": "2026-06-20",
+    "title": "Mediterrane Schätze mit Korsika ab Mallorca",
+    "duration": 7,
+    "journeyIdentifier": "CO07260613",
+    "bookingLink": "https://aida.de/CO07260613/CLASSIC/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 749,
+    "stops": [
+      {
+        "place": "Palma",
+        "date": "2026-06-13",
+        "portCode": "ESPMI",
+        "lat": 39.56939,
+        "lon": 2.65024,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-13T22:00:00"
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAcosma",
+    "date": "2026-06-13",
+    "endDate": "2026-06-27",
+    "title": "Große Mittelmeer-Reise ab Mallorca 1",
+    "duration": 14,
+    "journeyIdentifier": "CO14260613",
+    "bookingLink": "https://aida.de/CO14260613/PREMIUM/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 2105,
+    "stops": [
+      {
+        "place": "Palma",
+        "date": "2026-06-13",
+        "portCode": "ESPMI",
+        "lat": 39.56939,
+        "lon": 2.65024,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-13T22:00:00"
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAnova",
+    "date": "2026-06-13",
+    "endDate": "2026-06-20",
+    "title": "Norwegens Welterbe ab Kiel",
+    "duration": 7,
+    "journeyIdentifier": "NO07260613",
+    "bookingLink": "https://aida.de/NO07260613/LIGHT/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 749,
+    "stops": [
+      {
+        "place": "Kiel",
+        "date": "2026-06-13",
+        "portCode": "DEKEL",
+        "lat": 54.32133,
+        "lon": 10.13489,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-13T17:00:00"
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAnova",
+    "date": "2026-06-13",
+    "endDate": "2026-06-27",
+    "title": "Große Norwegen-Reise ab Kiel",
+    "duration": 14,
+    "journeyIdentifier": "NO14260613",
+    "bookingLink": "https://aida.de/NO14260613/LIGHT/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 1499,
+    "stops": [
+      {
+        "place": "Kiel",
+        "date": "2026-06-13",
+        "portCode": "DEKEL",
+        "lat": 54.32133,
+        "lon": 10.13489,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-13T17:00:00"
+      }
+    ]
+  },
+  {
+    "year": "2026",
+    "ship": "AIDAperla",
+    "date": "2026-06-13",
+    "endDate": "2026-06-20",
+    "title": "Metropolen ab Hamburg",
+    "duration": 7,
+    "journeyIdentifier": "PE07260613",
+    "bookingLink": "https://aida.de/PE07260613/CLASSIC/meine-reise/reisende?adults=2&juveniles=0&children=0&babies=0",
+    "pricePerPerson": 829,
+    "stops": [
+      {
+        "place": "Hamburg",
+        "date": "2026-06-13",
+        "portCode": "DEHAM",
+        "lat": 53.55073,
+        "lon": 9.99302,
+        "arrivalDateTime": null,
+        "departureDateTime": "2026-06-13T17:00:00"
       }
     ]
   }

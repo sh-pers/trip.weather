@@ -222,5 +222,157 @@
     "lon": 6.15492,
     "countryCode": "NO",
     "timezone": "Europe/Oslo"
+  },
+  "DKNBG": {
+    "name": "Nyborg",
+    "query": "Nyborg",
+    "lat": 55.31274,
+    "lon": 10.78964,
+    "countryCode": "DK",
+    "timezone": "Europe/Copenhagen"
+  },
+  "SEGOT": {
+    "name": "Göteborg",
+    "query": "Göteborg",
+    "lat": 57.70716,
+    "lon": 11.96679,
+    "countryCode": "SE",
+    "timezone": "Europe/Stockholm"
+  },
+  "NOOSL": {
+    "name": "Oslo",
+    "query": "Oslo",
+    "lat": 59.91273,
+    "lon": 10.74609,
+    "countryCode": "NO",
+    "timezone": "Europe/Oslo"
+  },
+  "DKSKA": {
+    "name": "Skagen",
+    "query": "Skagen",
+    "lat": 57.72093,
+    "lon": 10.58394,
+    "countryCode": "DK",
+    "timezone": "Europe/Copenhagen"
+  },
+  "NOHAU": {
+    "name": "Haugesund",
+    "query": "Haugesund",
+    "lat": 59.41378,
+    "lon": 5.268,
+    "countryCode": "NO",
+    "timezone": "Europe/Oslo"
+  },
+  "NONFD": {
+    "name": "Nordfjordeid",
+    "query": "Nordfjordeid",
+    "lat": 61.9122,
+    "lon": 5.98557,
+    "countryCode": "NO",
+    "timezone": "Europe/Oslo"
+  },
+  "GRKGS": {
+    "name": "Kos",
+    "query": "Kos",
+    "lat": 10.60932,
+    "lon": 103.52958,
+    "countryCode": "KH",
+    "timezone": "Asia/Phnom_Penh"
+  },
+  "FRCER": {
+    "name": "Cherbourg",
+    "query": "Cherbourg",
+    "lat": 48.11815,
+    "lon": -123.43074,
+    "countryCode": "US",
+    "timezone": "America/Los_Angeles"
+  },
+  "GIGIB": {
+    "name": "Gibraltar",
+    "query": "Gibraltar",
+    "lat": 36.14474,
+    "lon": -5.35257,
+    "countryCode": "GI",
+    "timezone": "Europe/Gibraltar"
+  },
+  "ESCAR": {
+    "name": "Cartagena",
+    "query": "Cartagena",
+    "lat": 10.39817,
+    "lon": -75.49328,
+    "countryCode": "CO",
+    "timezone": "America/Bogota"
+  },
+  "ESIBZ": {
+    "name": "Ibiza",
+    "query": "Ibiza",
+    "lat": 38.90883,
+    "lon": 1.43296,
+    "countryCode": "ES",
+    "timezone": "Europe/Madrid"
+  },
+  "ESAGP": {
+    "name": "Malaga",
+    "query": "Malaga",
+    "lat": 36.72016,
+    "lon": -4.42034,
+    "countryCode": "ES",
+    "timezone": "Europe/Madrid"
+  },
+  "PTLIS": {
+    "name": "Lissabon",
+    "query": "Lissabon",
+    "lat": 38.72509,
+    "lon": -9.1498,
+    "countryCode": "PT",
+    "timezone": "Europe/Lisbon"
+  },
+  "GRGAF": {
+    "name": "Souda-bucht",
+    "query": "Souda",
+    "lat": 35.48717,
+    "lon": 24.07344,
+    "countryCode": "GR",
+    "timezone": "Europe/Athens"
+  },
+  "TRKUS": {
+    "name": "Kusadasi",
+    "query": "Kuşadası",
+    "lat": 37.86014,
+    "lon": 27.25713,
+    "countryCode": "TR",
+    "timezone": "Europe/Istanbul"
+  },
+  "GRPIR": {
+    "name": "Athen/Piräus",
+    "query": "Piraeus",
+    "lat": 37.94203,
+    "lon": 23.64619,
+    "countryCode": "GR",
+    "timezone": "Europe/Athens"
+  },
+  "GBDVR": {
+    "name": "Dover/London",
+    "query": "Dover",
+    "lat": 39.15817,
+    "lon": -75.52437,
+    "countryCode": "US",
+    "timezone": "America/New_York"
+  },
+  "GBPPO": {
+    "name": "St.peter port/Guernsey",
+    "query": "Saint Peter Port",
+    "lat": 49.45981,
+    "lon": -2.53527,
+    "countryCode": "GG",
+    "timezone": "Europe/Guernsey"
+  },
+  "ESCAD": {
+    "name": "Sevilla/Cadiz",
+    "query": "Cádiz",
+    "lat": 36.52672,
+    "lon": -6.2891,
+    "countryCode": "ES",
+    "timezone": "Europe/Madrid"
   }
 }
